@@ -33,7 +33,7 @@ void Game::updateCollision()
 	//Collision bottom of screen
 	if (this->player->getPosition().y + this->player->getGlobalBounds().height > this->window.getSize().y)
 	{
-        this->window.close();
+        //this->window.close();
 	}
 }
 

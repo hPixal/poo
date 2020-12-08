@@ -3,9 +3,9 @@
 #include <cstdlib>
 
 
-Player::Player() : Entity("player.png") {
-	_spr.setScale(1,1);
-	_spr.setPosition(280,950); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
+Player::Player() : Entity("models/player.png") {
+	_spr.setScale(0.5,0.5);
+	_spr.setPosition(280,500); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
 	initPhysics();
 	
 	
