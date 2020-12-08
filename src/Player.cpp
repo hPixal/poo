@@ -4,11 +4,21 @@
 
 
 Player::Player() : Entity("player.png") {
-	_spr.setScale(0.5,0.5);
+	_spr.setScale(1,1);
 	_spr.setPosition(280,950); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
 	initPhysics();
 	
 	
+}
+
+Vector2f Player::getPosition(){
+	Vector2f pos = _spr.getPosition(); //Retorna las direcciones x e y del jugador
+	return pos;
+}
+
+FloatRect Player::getGlobalBounds(){
+	FloatRect bounds = _spr.getGlobalBounds();
+	return bounds;
 }
 
 
@@ -17,9 +27,9 @@ void Player::Update ( ) {
 		move(+5,0);
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) // para mover el jugador a la izquierda
 		move(-5,0);
-	
-	
+	updatePhysics();
 }
+
 void Player::initPhysics ( ) {
 	velocity = {1,1};//no se bien con que valores inicializar esto
 	velocity_max = 10.f;
@@ -29,7 +39,7 @@ void Player::initPhysics ( ) {
 }
 
 
-void Player::move (const float dir_x, const float dir_y) {
+void Player::move (const float dir_x, const float dir_y) { //WIP
 	//aceleracion
 	velocity.x += dir_x*aceleration;
 	//limitar la aceleracion
@@ -48,3 +58,9 @@ void Player::updatePhysics ( ) {
 		velocity.y=0.f;
 	_spr.move(velocity);
 }
+
+
+void Player::render(RenderTarget & target){
+	target.draw(this->_spr);
+}
+

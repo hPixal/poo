@@ -3,7 +3,7 @@
 
 void Game::initWindow()
 {
-	this->window.create(sf::VideoMode(600, 1000), "Game 4", sf::Style::Close | sf::Style::Titlebar);
+	this->window.create(sf::VideoMode(600, 1000), "Proyecto POO", sf::Style::Close | sf::Style::Titlebar);
 	this->window.setFramerateLimit(60);
 }
 
@@ -25,7 +25,7 @@ Game::~Game()
 
 void Game::updatePlayer()
 {
-	this->player->update();
+	this->player->Update();
 }
 
 void Game::updateCollision()
@@ -57,9 +57,8 @@ void Game::update()
 				)
 			)
 		{
-			this->player->resetAnimationTimer();
 		}
-	}
+	} 
 
 	this->updatePlayer();
 
