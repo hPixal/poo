@@ -24,6 +24,7 @@ private:
 	Vector2f velocity;
 	float velocity_max;
 	float velocity_min;
+	float velocity_max_y;
 	float aceleration;
 	float drag;
 	float gravity;
