@@ -1,20 +1,29 @@
 #pragma once
+#include"Player.hpp"
 
-#include <iostream>
-#include <SFML/Graphics.hpp>
-using namespace sf;
-class Game {
-    RenderWindow _window;
-    Event _ev;
-    void initWindow();
+class Game
+{
+private:
+	sf::RenderWindow window;
+	sf::Event ev;
+
+	Player* player;
+
+	void initWindow();
+	void initPlayer();
+
 public:
 
-    //Functions;
-    Game();
-    virtual ~Game();
-    
-    void update();                              // Polls every event and puts them in _ev || If the event type is close, it closes the active window.
-    void render();                              // Asks every sub class to render whathever is going on on the game
-    const RenderWindow& getWindow() const;
-    
+	//Functions
+
+
+	Game();
+	virtual ~Game();
+	//Functions
+	void updatePlayer();
+	void updateCollision();
+	void update();
+	void renderPlayer();
+	void render();
+	const sf::RenderWindow& getWindow() const;
 };
