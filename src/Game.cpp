@@ -1,87 +1,80 @@
-#include "Game.hpp"
 #include <SFML/Graphics.hpp>
+#include "Game.hpp"
+#include "Scene.hpp"
+#include "playScene.hpp"
+using namespace sf;
 
-void Game::initWindow()
+Game::Game() 
+	: m_window(VideoMode(640,1024),"Skyjump")
 {
-	this->window.create(sf::VideoMode(600, 1000), "Proyecto POO", sf::Style::Close | sf::Style::Titlebar);
-	this->window.setFramerateLimit(60);
+	m_window.setFramerateLimit(60);
+    //FILL WITH FIRST SCENE AS menuScene 
+	m_scene = new playScene();
 }
 
-void Game::initPlayer()
-{
-	this->player = new Player();
-}
-
-Game::Game()
-{
-	this->initWindow();
-	this->initPlayer();
-}
-
-Game::~Game()
-{
-	delete this->player;
-}
-
-void Game::updatePlayer()
-{
-	this->player->Update();
-}
-
-void Game::updateCollision()
-{
-	//Collision bottom of screen
-	if (this->player->getPosition().y + this->player->getGlobalBounds().height > this->window.getSize().y)
-	{
-        //this->window.close();
+void Game::Run ( ) {
+	while(m_window.isOpen()) {
+		ProcessEvents();
+		Update();
+		Draw();
+		if (m_next_scene) {
+			delete m_scene;
+			m_scene = m_next_scene;
+			m_next_scene = nullptr;
+		}
 	}
 }
 
-void Game::update()
-{
-	//Polling window events
-	while (this->window.pollEvent(this->ev))
+void Game::Update ( ) {
+	m_scene->Update(*this);
+}
+
+void Game::Draw ( ) {
+	m_scene->Draw(m_window);
+}
+
+void Game::ProcessEvents ( ) {
+	//Polling m_window events
+	while (this->m_window.pollEvent(this->m_ev))
 	{
-		if (this->ev.type == sf::Event::Closed)
-			this->window.close();
-		else if (this->ev.type == sf::Event::KeyPressed && this->ev.key.code == sf::Keyboard::Escape)
-			this->window.close();
+		if (this->m_ev.type == sf::Event::Closed)
+			this->m_window.close();
+		else if (this->m_ev.type == sf::Event::KeyPressed && this->m_ev.key.code == sf::Keyboard::Escape)
+			this->m_window.close();
 
 		if (
-			this->ev.type == sf::Event::KeyReleased &&
+			this->m_ev.type == sf::Event::KeyReleased &&
 			(
-				this->ev.key.code == sf::Keyboard::A ||
-				this->ev.key.code == sf::Keyboard::D ||
-				this->ev.key.code == sf::Keyboard::W ||
-				this->ev.key.code == sf::Keyboard::S
+				this->m_ev.key.code == sf::Keyboard::A ||
+				this->m_ev.key.code == sf::Keyboard::D 
 				)
 			)
 		{
 		}
 	} 
-
-	this->updatePlayer();
-
-	this->updateCollision();
 }
 
-void Game::renderPlayer()
-{
-	this->player->render(this->window);
+Event Game::getEvent(){
+	return m_ev;
 }
 
-void Game::render()
-{
-	this->window.clear();
-
-	//Render game
-	this->renderPlayer();
-
-	this->window.display();
+void Game::SetScene (Scene * next_scene) {
+	m_next_scene = next_scene;
 }
 
-const sf::RenderWindow & Game::getWindow() const
-{
-	// TODO: insert return statement here
-	return this->window;
-}
+/*
+This file is part of Skyjump.
+
+    Skyjump is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Skyjump is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Skyjump.  If not, see <https://www.gnu.org/licenses/>.
+*/

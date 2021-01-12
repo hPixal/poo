@@ -1,29 +1,21 @@
 #pragma once
 #include <SFML/Graphics.hpp>
-#include "Scene.hpp"
-#include "playScene.hpp"
-using namespace sf;
+#include "Game.hpp"
 
 /*
-Skyjump main game motor
+This is the mother class of all scenes of the game. It dictates the way that all scenes must be
+composed just so Game class can accept and display them.
 */
 
-class Game {
+class Scene {
+
 public:
-    //Functions
-	Game();
-	void Run();
-	void ProcessEvents();
-	void Update();
-	void Draw();
-	void SetScene(Scene *next_scene);
-    Event getEvent();
-    //Variables
-    Event m_ev;
-	RenderWindow m_window;
-private:
-	Scene *m_scene;
-	Scene *m_next_scene = nullptr;
+    Scene() { }
+    virtual void Update(Game &game) = 0; //All scenes must have it's own overrided update functi
+                                         //and a game to output data
+    virtual void Draw(sf::RenderWindow &win) const = 0; //All scenes must have an overrided draw
+                                                        //function and get window to display itself
+    virtual ~Scene() { }
 };
 
 /*

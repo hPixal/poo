@@ -69,7 +69,7 @@ void Player::updatePhysics ( ) {
 }
 
 
-void Player::render(RenderTarget & target){
+void Player::render(RenderTarget & target) const {
 	target.draw(this->_spr);
 }
 

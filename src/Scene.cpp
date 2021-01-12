@@ -1,30 +1,6 @@
-#pragma once
-#include <SFML/Graphics.hpp>
 #include "Scene.hpp"
-#include "playScene.hpp"
-using namespace sf;
+#include "Game.hpp"
 
-/*
-Skyjump main game motor
-*/
-
-class Game {
-public:
-    //Functions
-	Game();
-	void Run();
-	void ProcessEvents();
-	void Update();
-	void Draw();
-	void SetScene(Scene *next_scene);
-    Event getEvent();
-    //Variables
-    Event m_ev;
-	RenderWindow m_window;
-private:
-	Scene *m_scene;
-	Scene *m_next_scene = nullptr;
-};
 
 /*
 This file is part of Skyjump.

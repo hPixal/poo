@@ -12,7 +12,7 @@ public:
 	void initPhysics();									//
 	void move(const float dir_x, const float dir_y);	//
 	void updatePhysics();								//
-	void render(RenderTarget & target);
+	void render(RenderTarget & target) const;
 
 	//Get Positions
 	Vector2f getPosition();
