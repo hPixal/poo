@@ -56,7 +56,7 @@ void Player::move (const float dir_x) { //WIP
 
 void Player::updatePhysics ( ) {
 	//gravedad
-	velocity.y += 1.f * gravity;
+	//velocity.y += 1.f * gravity;
 
 	//desaceleracion
 	velocity *= drag; // multiplico ambos valores de velocity por la desaceleracion con una sobrecarga que posee la clase vector2f
