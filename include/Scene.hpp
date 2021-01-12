@@ -16,7 +16,7 @@ public:
                                          //and a game to output data
     virtual void Draw(sf::RenderWindow &win) const = 0; //All scenes must have an overrided draw
                                                         //function and get window to display itself
-    virtual ~Scene()=0;
+    virtual ~Scene(){ };
 };
 
 /*

@@ -22,7 +22,6 @@ private:
 	//Initializers
 	void initVariables();
 	void initPlayer();
-
 public:
 
 	//Functions
@@ -32,6 +31,6 @@ public:
 	void Update(Game &game) override;
 	void Draw(sf::RenderWindow &win) const override;
 	const sf::RenderWindow& getWindow() const; 
-	~playScene();
+	~playScene() override;
 
 };

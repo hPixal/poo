@@ -6,7 +6,7 @@ class Platform : public Entity {
 
 public:
     Platform();
-
+    /*
     //Functions
     Vector2f spawnPlatform();
     void renderPlatform(RenderTarget & target);
@@ -15,5 +15,6 @@ public:
     //Override
     virtual void Update();
     virtual void movement() = 0;
+    */
     ~Platform();
 };

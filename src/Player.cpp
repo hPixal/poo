@@ -1,5 +1,6 @@
 #include "Player.hpp"
 #include <SFML/Window/Keyboard.hpp>
+#include <SFML/Graphics.hpp>
 #include <cstdlib>
 
 

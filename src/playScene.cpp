@@ -4,8 +4,8 @@
 #include "Game.hpp"
 
 playScene::playScene(){
-	initPlayer();
 	initVariables();
+	initPlayer();
 }
 
 void playScene::initVariables(){
@@ -14,6 +14,11 @@ void playScene::initVariables(){
 	this->spawnTimer = this->spawnTimerMax;
 	this->maxPlatforms = 20;
 	this->points = 0;
+}
+
+void playScene::initPlayer()
+{
+	this->player = new Player();
 }
 
 void playScene::updateCollision(RenderWindow &win)
@@ -31,9 +36,11 @@ void playScene::Update(Game &game)
 	this->updateCollision(game.m_window);
 }
 
+void playScene::updatePlayer(){
+	this->player->Update();
+}
 
 void playScene::Draw(RenderWindow &win) const {
-
 	win.clear();
 
 	//Render game
