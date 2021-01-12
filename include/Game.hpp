@@ -6,6 +6,7 @@ using namespace sf;
 /*
 Skyjump main game motor
 */
+class Scene;
 
 class Game {
 public:

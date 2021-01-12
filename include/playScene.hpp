@@ -5,6 +5,7 @@
 #include "Player.hpp"
 class Game;
 class Player;
+class Scene;
 
 class playScene : public Scene {
 private:
