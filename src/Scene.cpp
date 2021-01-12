@@ -1,6 +1,9 @@
 #include "Scene.hpp"
 #include "Game.hpp"
 
+Scene::Scene(){
+
+}
 
 /*
 This file is part of Skyjump.

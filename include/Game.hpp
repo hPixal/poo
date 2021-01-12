@@ -1,7 +1,6 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Scene.hpp"
-#include "playScene.hpp"
 using namespace sf;
 
 /*

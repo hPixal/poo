@@ -24,9 +24,9 @@ FloatRect Player::getGlobalBounds(){
 
 void Player::Update ( ) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) //para mover el jugador a la derecha
-		move(+5,0);
+		move(+5);
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) // para mover el jugador a la izquierda
-		move(-5,0);
+		move(-5);
 	updatePhysics();
 }
 
@@ -41,7 +41,7 @@ void Player::initPhysics ( ) {
 }
 
 
-void Player::move (const float dir_x, const float dir_y) { //WIP
+void Player::move (const float dir_x) { //WIP
 	//aceleracion
 	velocity.x += dir_x*aceleration;
 	if(std::abs(velocity.y)>velocity_max_y){

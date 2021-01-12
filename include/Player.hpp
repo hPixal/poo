@@ -10,7 +10,7 @@ public:
 	Player();
 	void Update();										// Updates all physics and priv vars
 	void initPhysics();									//
-	void move(const float dir_x, const float dir_y);	//
+	void move(const float dir_x);	  					//
 	void updatePhysics();								//
 	void render(RenderTarget & target) const;
 

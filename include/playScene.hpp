@@ -3,6 +3,8 @@
 #include "Game.hpp"
 #include "Scene.hpp"
 #include "Player.hpp"
+class Game;
+class Player;
 
 class playScene : public Scene {
 private:
@@ -23,12 +25,12 @@ private:
 public:
 
 	//Functions
-	playScene() {}
+	playScene();
 	void updatePlayer();
 	void updateCollision(sf::RenderWindow &win);
-	void Update(Game &game)override;
+	void Update(Game &game) override;
 	void Draw(sf::RenderWindow &win) const override;
 	const sf::RenderWindow& getWindow() const; 
-	~playScene() {}
+	~playScene();
 
 };

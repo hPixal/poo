@@ -43,6 +43,10 @@ void playScene::Draw(RenderWindow &win) const {
 
 }
 
+playScene::~playScene(){
+
+}
+
 /*
 This file is part of Skyjump.
 
