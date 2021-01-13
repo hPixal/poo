@@ -74,3 +74,7 @@ void Player::render(RenderTarget & target) const {
 	target.draw(this->_spr);
 }
 
+void Player::teleport(int x){
+	int y = _spr.getPosition().y;
+	_spr.setPosition(x,y);
+}

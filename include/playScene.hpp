@@ -12,6 +12,9 @@ private:
 
 	//Variables
 	Player* player;
+	std::vector<Texture> backgrounds;
+	Sprite level_background;
+	int level;
 	//std::vector<Platform> current_platforms;
 	float spawnTimerMax;
 	float spawnTimer;
@@ -22,10 +25,16 @@ private:
 	//Initializers
 	void initVariables();
 	void initPlayer();
+	void initBackgrounds();
+
+	//Private Functions
+	void draw_background(RenderTarget &win) const;
+
 public:
 
 	//Functions
 	playScene();
+	void check_level();
 	void updatePlayer();
 	void updateCollision(sf::RenderWindow &win);
 	void Update(Game &game) override;
