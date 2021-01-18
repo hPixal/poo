@@ -4,12 +4,12 @@
 using namespace sf;
 
 class Entity {
-    Texture _tex;
 protected:
-    Sprite _spr;
+    Texture _tex;
 public:
+    Sprite _spr;
     Entity(std::string name);        //Recibes the name of the file to load the texture from
-    void draw(RenderWindow &win);    //Defines a certain type of behaviour at the time of drawing
-
+    virtual void Draw(RenderTarget &tar);    //Defines a certain type of behaviour at the time of drawing
+    bool collideWith(const Entity & ent2) const ; //Returns bool for wether 2 objects collide or not
     ~Entity();
 };

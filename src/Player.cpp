@@ -8,8 +8,6 @@ Player::Player() : Entity("models/player.png") {
 	_spr.setScale(0.25,0.25);
 	_spr.setPosition(280,500); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
 	initPhysics();
-	
-	
 }
 
 Vector2f Player::getPosition(){
@@ -70,7 +68,7 @@ void Player::updatePhysics ( ) {
 }
 
 
-void Player::render(RenderTarget & target) const {
+void Player::Draw(RenderTarget & target) {
 	target.draw(this->_spr);
 }
 

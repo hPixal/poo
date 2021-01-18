@@ -12,10 +12,6 @@ playScene::playScene(){
 /******************INIT*******************/
 
 void playScene::initVariables(){
-	this->endGame = false;
-	this->spawnTimerMax = 5.f;
-	this->spawnTimer = this->spawnTimerMax;
-	this->maxPlatforms = 20;
 	this->points = 1;
 }
 
@@ -92,7 +88,7 @@ void playScene::Draw(RenderWindow &win) const {
 	draw_background(win);
 
 	//Render game
-	this->player->render(win);
+	this->player->Draw(win);
 
 	win.display();
 

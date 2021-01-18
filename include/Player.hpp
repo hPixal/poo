@@ -12,7 +12,7 @@ public:
 	void initPhysics();									//
 	void move(const float dir_x);	  					//
 	void updatePhysics();								//
-	void render(RenderTarget & target) const;
+	void Draw(RenderTarget & target) override;
 	void teleport(int x);
 	//Get Positions
 	Vector2f getPosition();

@@ -8,9 +8,16 @@ Entity::Entity(std::string name){
     _spr.setTexture(_tex);
 }
 
-void Entity::draw(RenderWindow &win){
-    win.draw(_spr);
+void Entity::Draw(RenderTarget &tar){
+    tar.draw(_spr);
 }
+
+bool Entity::collideWith(const Entity & ent2) const {
+	auto r1 = this->_spr.getGlobalBounds();
+	auto r2 = ent2._spr.getGlobalBounds();
+	return r1.intersects(r2);
+}
+
 
 Entity::~Entity() {
 
