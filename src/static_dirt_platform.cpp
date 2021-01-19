@@ -12,6 +12,9 @@ void static_dirt_platform::Update(Game &game) {
 	this->Draw(game.m_window); 
 }
 
+void static_dirt_platform::Draw(sf::RenderTarget &tar){
+	tar.draw(this->_spr);
+}
 
 static_dirt_platform::~static_dirt_platform() {
 

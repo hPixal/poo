@@ -3,6 +3,7 @@
 #include <iostream>
 #include "Entity.hpp"
 #include "Game.hpp"
+class Entity;
 
 class Platform : public Entity {
 
@@ -12,9 +13,9 @@ public:
     //Functions
     void spawnPlatform(Vector2f pos);
     virtual void Update(Game &game); 
-    void Draw(sf::RenderTarget &tar);
+    void Draw(sf::RenderTarget &tar) override;
 
     //Override
     virtual void Update( );
-    ~Platform();
+    virtual ~Platform() { };
 };

@@ -17,7 +17,3 @@ void Platform::Update(Game &game) {
 void Platform::Draw(sf::RenderTarget &tar){
 	tar.draw(this->_spr);
 }
-
-Platform::~Platform() {
-
-}
