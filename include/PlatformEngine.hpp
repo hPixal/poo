@@ -4,16 +4,22 @@
 #include "playScene.hpp"
 #include "Platform.hpp"
 using namespace sf;
+
+
 class PlatformEngine {
     Platform *platformTypes[4];
     std::vector<Platform> current_platforms;
     //var
+    int plat_distance;
+    size_t max_plat;
     int level;
     public:
-    PlatformEngine();
-    void Update(int level,int i);
+    PlatformEngine(int* platmax); //<-- constructor
+    void Update(RenderWindow &win,int level,int i);
     void initTextures();
     void initVector();
-    void Draw(RenderWindow &win,int level);
+    void givePos(Vector2f bounds,int prevPlat);
+    void Draw(RenderWindow &win,int i);
+    Platform* getNewPlatform(int level);
     ~PlatformEngine();
 };

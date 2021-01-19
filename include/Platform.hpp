@@ -10,7 +10,7 @@ public:
     Platform(std::string file_loc);
 
     //Functions
-    void spawnPlatform(Vector2f pos,sf::RenderTarget &tar);
+    void spawnPlatform(Vector2f pos);
     virtual void Update(Game &game); 
     //virtual void Draw(sf::RenderTarget &tar) const = 0;
 

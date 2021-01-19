@@ -7,19 +7,21 @@
 class Game;
 class Player;
 class Scene;
+class PlatformEngine;
+
 
 class playScene : public Scene {
 private:
 	//Variables
-	PlatformEngine plat;
+	PlatformEngine* plat;
 	Player* player;
 	std::vector<Texture> backgrounds;
 	Sprite level_background;
+	int max_platforms = 10;
 	int points;
 
 	//Initializers
 	void initVariables();
-	void initPlayer();
 	void initBackgrounds();
 
 	//Private Functions

@@ -1,11 +1,12 @@
 #include <SFML/Graphics.hpp>
 #include "playScene.hpp"
 #include "Scene.hpp"
+#include "PlatformEngine.hpp"
 #include "Game.hpp"
 
-playScene::playScene(){
+playScene::playScene() {
+
 	initVariables();
-	initPlayer();
 	initBackgrounds();
 }
 
@@ -13,11 +14,7 @@ playScene::playScene(){
 
 void playScene::initVariables(){
 	this->points = 1;
-}
-
-
-void playScene::initPlayer()
-{
+	this->plat = new PlatformEngine(&max_platforms);
 	this->player = new Player();
 }
 
@@ -68,6 +65,10 @@ void playScene::updateCollision(RenderWindow &win)
 
 void playScene::Update(Game &game)
 {
+	for (int i = 0; i < static_cast<int>(max_platforms); i++)
+	{
+		this->plat->Update(game.m_window,this->level,i);
+	}
 	this->updatePlayer();
 	this->updateCollision(game.m_window);
 }
