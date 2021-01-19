@@ -14,6 +14,10 @@ void Platform::Update(Game &game) {
 	this->Draw(game.m_window); 
 }
 
+void Platform::Draw(sf::RenderTarget &tar){
+	tar.draw(this->_spr);
+}
+
 Platform::~Platform() {
 
 }

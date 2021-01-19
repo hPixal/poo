@@ -8,6 +8,11 @@ static_dirt_platform::static_dirt_platform(std::string filename) : Platform (fil
 
 }
 
+void static_dirt_platform::Update(Game &game) { 
+	this->Draw(game.m_window); 
+}
+
+
 static_dirt_platform::~static_dirt_platform() {
 
 }

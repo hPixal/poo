@@ -4,6 +4,7 @@
 #include "Scene.hpp"
 #include "Player.hpp"
 #include "PlatformEngine.hpp"
+#include "Platform.hpp"
 class Game;
 class Player;
 class Scene;

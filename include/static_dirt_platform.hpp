@@ -9,6 +9,6 @@ class static_dirt_platform : public Platform{
 
 public:
     static_dirt_platform(std::string filename);
-    void Draw(RenderTarget &tar) override;
+    void Update(Game &game) override;
     ~static_dirt_platform();
 };

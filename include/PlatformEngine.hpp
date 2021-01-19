@@ -14,7 +14,7 @@ class PlatformEngine {
     size_t max_plat;
     int level;
     public:
-    PlatformEngine(int* platmax); //<-- constructor
+    PlatformEngine(int platmax); //<-- constructor
     void Update(RenderWindow &win,int level,int i);
     void initTextures();
     void initVector();

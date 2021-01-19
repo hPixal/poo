@@ -14,7 +14,7 @@ playScene::playScene() {
 
 void playScene::initVariables(){
 	this->points = 1;
-	this->plat = new PlatformEngine(&max_platforms);
+	this->plat = new PlatformEngine(max_platforms);
 	this->player = new Player();
 }
 

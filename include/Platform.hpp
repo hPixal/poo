@@ -12,7 +12,7 @@ public:
     //Functions
     void spawnPlatform(Vector2f pos);
     virtual void Update(Game &game); 
-    //virtual void Draw(sf::RenderTarget &tar) const = 0;
+    void Draw(sf::RenderTarget &tar);
 
     //Override
     virtual void Update( );

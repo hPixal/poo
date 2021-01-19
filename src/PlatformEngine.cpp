@@ -3,8 +3,8 @@
 #include "Platform.hpp"
 #include "static_dirt_platform.hpp"
 
-PlatformEngine::PlatformEngine(int* platmax) {
-    this->max_plat=*platmax;
+PlatformEngine::PlatformEngine(int platmax) {
+    this->max_plat=platmax;
     initTextures();
     initVector();
 }
