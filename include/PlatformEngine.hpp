@@ -15,7 +15,7 @@ class PlatformEngine {
     int level;
     public:
     PlatformEngine(int platmax); //<-- constructor
-    void Update(RenderWindow &win,int level,int i);
+    void Update(Game &g,int level,int i);
     void initTextures();
     void initVector();
     void givePos(Vector2f bounds,int prevPlat);

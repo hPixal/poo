@@ -27,7 +27,7 @@ private:
 
 	//Private Functions
 	void draw_background(RenderTarget &win) const;
-	int level;
+	int level = 1;
 public:
 	//Functions
 	playScene();

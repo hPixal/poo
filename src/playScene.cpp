@@ -67,7 +67,7 @@ void playScene::Update(Game &game)
 {
 	for (int i = 0; i < static_cast<int>(max_platforms); i++)
 	{
-		this->plat->Update(game.m_window,this->level,i);
+		this->plat->Update(game,this->level,i);
 	}
 	this->updatePlayer();
 	this->updateCollision(game.m_window);

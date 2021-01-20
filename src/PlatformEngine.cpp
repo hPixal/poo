@@ -22,15 +22,15 @@ void PlatformEngine::initVector(){
     current_platforms[0].spawnPlatform(initial_platform); //falta el RenderTarget
 }
 
-void PlatformEngine::Update(RenderWindow &win,int level,int i){
-    Vector2u aux = win.getSize();   //
+void PlatformEngine::Update(Game &g,int level,int i){
+    Vector2u aux = g.m_window.getSize();   //
     Vector2f aux2;                  // This is used to convert Vector2u 
     aux2.x = aux.x;                 // into vector2f in order to make the 
     aux2.y = aux.y;                 // the function call & get "win" bounds
-    current_platforms[i].Update();
-    if (current_platforms[0]._spr.getPosition().y > win.getSize().y)
+    current_platforms[i].Update(g);
+    if (current_platforms[0]._spr.getPosition().y > g.m_window.getSize().y)
     {
-        current_platforms.erase(current_platforms.begin(),current_platforms.begin()+1);
+        current_platforms.erase(current_platforms.begin());
     }
     if (current_platforms.size() < max_plat)
     {
@@ -38,18 +38,16 @@ void PlatformEngine::Update(RenderWindow &win,int level,int i){
         givePos(aux2,current_platforms.size()-1);
     }
 
-    for (int i = 0; i < static_cast<int>(max_plat); i++)
-    {
-        Draw(win,i);
-    }
+    Draw(g.m_window,i);
+    
     
 }
 
 void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
     int aux = rand() % 6;
-    int spawnPos = bounds.x / 6 - 100; // 100 it's the plat size in X
+    int spawnPos = bounds.x / 6 - current_platforms[0]._spr.getScale().x; // 100 it's the plat size in X
     Vector2f pos;
-    pos.y = plat_distance + current_platforms[prevPlat]._spr.getPosition().y;
+    pos.y = (-current_platforms[prevPlat]._spr.getPosition().y) - plat_distance;
     pos.x = aux*spawnPos;
     current_platforms[prevPlat+1].spawnPlatform(pos);
 }

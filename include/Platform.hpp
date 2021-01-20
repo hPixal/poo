@@ -3,7 +3,6 @@
 #include <iostream>
 #include "Entity.hpp"
 #include "Game.hpp"
-class Entity;
 
 class Platform : public Entity {
 
@@ -16,6 +15,5 @@ public:
     void Draw(sf::RenderTarget &tar) override;
 
     //Override
-    virtual void Update( );
     virtual ~Platform() { };
 };
