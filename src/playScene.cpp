@@ -14,7 +14,7 @@ playScene::playScene() {
 
 void playScene::initVariables(){
 	this->points = 1;
-	this->plat = new PlatformEngine(max_platforms);
+	this->plat = new PlatformEngine(10);
 	this->player = new Player();
 }
 
@@ -65,7 +65,7 @@ void playScene::updateCollision(RenderWindow &win)
 
 void playScene::Update(Game &game)
 {
-	for (int i = 0; i < static_cast<int>(max_platforms); i++)
+	for (int i = 0; i < max_platforms; i++)
 	{
 		this->plat->Update(game,this->level,i);
 	}
@@ -90,6 +90,12 @@ void playScene::Draw(RenderWindow &win) const {
 
 	//Render game
 	this->player->Draw(win);
+
+	for (int i = 0; i < max_platforms; i++)
+	{
+		this->plat->Draw(win,i);
+	}
+	
 
 	win.display();
 

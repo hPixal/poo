@@ -5,6 +5,7 @@
 
 PlatformEngine::PlatformEngine(int platmax) {
     this->max_plat=platmax;
+    this->plat_distance = 100;
     initTextures();
     initVector();
 }
@@ -19,7 +20,7 @@ void PlatformEngine::initVector(){
     initial_platform.x = 280;
     initial_platform.y = 100;
     current_platforms.push_back(*platformTypes[0]);
-    current_platforms[0].spawnPlatform(initial_platform); //falta el RenderTarget
+    current_platforms[0].spawnPlatform(initial_platform);
 }
 
 void PlatformEngine::Update(Game &g,int level,int i){
@@ -36,23 +37,21 @@ void PlatformEngine::Update(Game &g,int level,int i){
     {
         current_platforms.push_back(*getNewPlatform(level));
         givePos(aux2,current_platforms.size()-1);
-    }
-
-    Draw(g.m_window,i);
-    
-    
+    }     
 }
 
 void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
     int aux = rand() % 6;
     int spawnPos = bounds.x / 6 - current_platforms[0]._spr.getScale().x; // 100 it's the plat size in X
     Vector2f pos;
-    pos.y = (-current_platforms[prevPlat]._spr.getPosition().y) - plat_distance;
+    pos.y = (current_platforms[prevPlat]._spr.getPosition().y) - plat_distance;
     pos.x = aux*spawnPos;
     current_platforms[prevPlat+1].spawnPlatform(pos);
 }
+
 void PlatformEngine::Draw(RenderWindow &win,int i){
     current_platforms[i].Draw(win);
+    //std::cout << current_platforms[i]._spr.getPosition().y << current_platforms[i]._spr.getPosition().x << std::endl;
 }
 
 Platform* PlatformEngine::getNewPlatform(int level){
