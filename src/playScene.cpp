@@ -65,10 +65,7 @@ void playScene::updateCollision(RenderWindow &win)
 
 void playScene::Update(Game &game)
 {
-	for (int i = 0; i < max_platforms; i++)
-	{
-		this->plat->Update(game,this->level,i);
-	}
+	this->plat->Update(game,this->level);
 	this->updatePlayer();
 	this->updateCollision(game.m_window);
 }
@@ -91,10 +88,9 @@ void playScene::Draw(RenderWindow &win) const {
 	//Render game
 	this->player->Draw(win);
 
-	for (int i = 0; i < max_platforms; i++)
-	{
-		this->plat->Draw(win,i);
-	}
+
+	this->plat->Draw(win);
+
 	
 
 	win.display();

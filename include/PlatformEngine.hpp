@@ -15,11 +15,11 @@ class PlatformEngine {
     int level;
     public:
     PlatformEngine(int platmax); //<-- constructor
-    void Update(Game &g,int level,int i);
+    void Update(Game &g,int level);
     void initTextures();
     void initVector();
     void givePos(Vector2f bounds,int prevPlat);
-    void Draw(RenderWindow &win,int i);
+    void Draw(RenderWindow &win);
     Platform* getNewPlatform(int level);
     ~PlatformEngine();
 };
