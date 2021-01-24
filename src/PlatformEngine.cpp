@@ -2,8 +2,11 @@
 #include "playScene.hpp"
 #include "Platform.hpp"
 #include "static_dirt_platform.hpp"
+#include "time.h"
+
 
 PlatformEngine::PlatformEngine(int platmax) {
+    srand(time(NULL));
     this->max_plat=platmax;
     this->plat_distance = 50;
     initTextures();
@@ -46,7 +49,7 @@ void PlatformEngine::Update(Game &g,int level){
 }
 
 void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
-    int aux = rand() % 6;
+    int aux = 1 + rand() % 6 ;
     int spawnPos = (bounds.x / 6) - current_platforms[0]._spr.getScale().x; // 100 it's the plat size in X
     Vector2f pos;
     pos.y = (current_platforms[prevPlat]._spr.getPosition().y) - plat_distance;
@@ -55,7 +58,7 @@ void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
 }
 
 void PlatformEngine::Draw(RenderWindow &win){
-    for (int i = 0; i < static_cast<int>(current_platforms.size()); i++)
+    for (size_t i = 0; i < current_platforms.size(); i++)
     {
         current_platforms[i].Draw(win);
     }
