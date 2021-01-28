@@ -18,7 +18,7 @@ Vector2f Player::getPosition(){
 }
 
 void Player::bounce(){
-	this->velocity.y=(-30);
+	this->velocity.y=(-38);
 }
 
 FloatRect Player::getGlobalBounds(){
@@ -37,9 +37,9 @@ bool Player::isFalling(){
 
 void Player::Update ( ) {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Right)) //para mover el jugador a la derecha
-		move(+5);
+		move(+8);
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) // para mover el jugador a la izquierda
-		move(-5);
+		move(-8);
 	updatePhysics();
 }
 

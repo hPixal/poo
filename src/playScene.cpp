@@ -79,7 +79,7 @@ void playScene::updateCollision(RenderWindow &win)
 
 void playScene::updateView(sf::RenderWindow &win){
 	if (player->_spr.getPosition().y < 
-	   win.mapPixelToCoords(Vector2i(0,1024/3),*pl_view).y)
+	   win.mapPixelToCoords(Vector2i(0,1024/2),*pl_view).y)
 	{
 		pl_view->setCenter(Vector2f(pl_view->getCenter().x,pl_view->getCenter().y-10.f));
 	}
