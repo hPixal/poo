@@ -12,7 +12,6 @@ public:
     static_dirt_platform(std::string filename);
     void Update(Game &game) override;
     void Draw(sf::RenderTarget &tar) override;
-    bool collideWith(const Entity & ent2) const override;
     ~static_dirt_platform() override;
 };
 

@@ -10,6 +10,6 @@ public:
     Sprite _spr;
     Entity(std::string name);        //Recibes the name of the file to load the texture from
     virtual void Draw(RenderTarget &tar);    //Defines a certain type of behaviour at the time of drawing
-    virtual bool collideWith(const Entity & ent2) const ; //Returns bool for wether 2 objects collide or not
+    virtual bool collideWith(const Entity & ent2) const = 0; //Returns bool for wether 2 objects collide or not
     ~Entity();
 };

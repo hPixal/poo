@@ -5,8 +5,8 @@
 #include "Game.hpp"
 
 playScene::playScene(RenderWindow &win) {
-	this->pl_view = new View(Vector2f(0.f,0.f),static_cast<Vector2f>(win.getSize()));
-	this->pl_view->setCenter(win.getDefaultView().getCenter());
+	this->pl_view = new View(win.getDefaultView().getCenter(),
+							 static_cast<Vector2f>(win.getSize()));
 	win.setView(*pl_view);
 	initVariables();
 	initBackgrounds(win);

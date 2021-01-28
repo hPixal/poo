@@ -81,6 +81,23 @@ void Player::updatePhysics ( ) {
 	_spr.move(velocity);
 }
 
+bool Player::collideWith(const Entity & ent2) const{
+	FloatRect aux = this->_spr.getGlobalBounds();
+	aux.height=1;
+	FloatRect aux2 = ent2._spr.getGlobalBounds();
+	//FloatRect(,,,)
+	FloatRect aux3 = FloatRect(aux2.top-aux2.height,aux2.top+aux2.height,aux2.width,0.f);
+	/*FloatRect aux2 = FloatRect(ent2._spr.getGlobalBounds().top-ent2._spr.getGlobalBounds().height,
+							   ent2._spr.getGlobalBounds().top,ent2._spr.getGlobalBounds().width,0.f);
+	aux2.top+=aux2.height-1;
+	aux2.height=1;*/
+	if (aux3.intersects(FloatRect(aux.top,aux.top,aux.width,0.f)))
+	{
+		return true;
+	}
+	return false;
+}
+
 
 void Player::Draw(RenderTarget & target) {
 	target.draw(this->_spr);

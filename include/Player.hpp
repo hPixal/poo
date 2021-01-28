@@ -12,6 +12,7 @@ public:
 	void initPhysics();									//
 	void move(const float dir_x);	  					//
 	void updatePhysics();								//
+	bool collideWith(const Entity & ent2) const override;
 	void Draw(RenderTarget & target) override;
 	void teleport(int x);
 	void bounce();

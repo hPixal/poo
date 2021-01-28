@@ -29,7 +29,7 @@ void PlatformEngine::initVector(){
 bool PlatformEngine::getCollision(const Entity &player){
     for (size_t i = 0; i < this->current_platforms.size(); i++)
     {
-        if (player.collideWith(current_platforms[i]))
+        if (current_platforms[i].collideWith(player))
         {
             return true;
         }

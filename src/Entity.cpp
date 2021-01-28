@@ -11,13 +11,14 @@ Entity::Entity(std::string name){
 void Entity::Draw(RenderTarget &tar){
     tar.draw(_spr);
 }
-
+/*
 bool Entity::collideWith(const Entity & ent2) const {
 	auto r1 = this->_spr.getGlobalBounds();
 	auto r2 = ent2._spr.getGlobalBounds();
 	return r1.intersects(r2);
+    return false;
 }
-
+*/
 
 Entity::~Entity() {
 
