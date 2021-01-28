@@ -14,10 +14,12 @@ public:
 	void updatePhysics();								//
 	void Draw(RenderTarget & target) override;
 	void teleport(int x);
+	void bounce();
 	//Get Positions
 	Vector2f getPosition();
 	FloatRect getGlobalBounds();
-	
+	//Get States
+	bool isFalling();
 private:
  
 	//Physics

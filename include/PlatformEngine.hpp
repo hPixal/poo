@@ -11,11 +11,12 @@ class PlatformEngine {
     std::vector<Platform> current_platforms;
     //var
     int plat_distance;
-    size_t max_plat;
+    size_t max_plat=1;
     int level;
     public:
     PlatformEngine(int platmax); //<-- constructor
-    void Update(Game &g,int level);
+    bool getCollision(const Entity &player);
+    void Update(Game &g,View &pl_view,int level);
     void initTextures();
     void initVector();
     void givePos(Vector2f bounds,int prevPlat);
@@ -23,3 +24,21 @@ class PlatformEngine {
     Platform* getNewPlatform(int level);
     ~PlatformEngine();
 };
+
+
+/*
+This file is part of Skyjump.
+
+    Skyjump is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Skyjump is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Skyjump.  If not, see <https://www.gnu.org/licenses/>.
+*/

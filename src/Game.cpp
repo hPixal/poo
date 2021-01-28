@@ -9,7 +9,7 @@ Game::Game()
 {
 	m_window.setFramerateLimit(60);
     //FILL WITH FIRST SCENE AS menuScene 
-	this->m_scene = new playScene;
+	this->m_scene = new playScene(m_window);
 }
 
 void Game::Run ( ) {

@@ -16,27 +16,29 @@ private:
 	//Variables
 	PlatformEngine* plat;
 	Player* player;
+	View* pl_view;
 	std::vector<Texture> backgrounds;
 	Sprite level_background;
 	int max_platforms = 10;
-	int points;
+	int points=2;
 
 	//Initializers
 	void initVariables();
-	void initBackgrounds();
+	void initBackgrounds(RenderWindow &win);
 
 	//Private Functions
 	void draw_background(RenderTarget &win) const;
 	int level = 1;
 public:
 	//Functions
-	playScene();
+	playScene(sf::RenderWindow &win);
 	void check_level();
 	void updatePlayer();
 	void updateCollision(sf::RenderWindow &win);
+	void updateView(sf::RenderWindow &win);
+	void updateBackgound(sf::RenderWindow &win);
 	void Update(Game &game) override;
 	void Draw(sf::RenderWindow &win) const override;
-	const sf::RenderWindow& getWindow() const; 
 	~playScene() override;
 
 };

@@ -1,7 +1,7 @@
 #include "Platform.hpp"
 
 Platform::Platform(std::string file_loc) : Entity(file_loc) {
-	_spr.setScale(0.25,0.25);
+	_spr.setScale(0.20,0.20);
 	_spr.setPosition(280,500); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
 }
 
