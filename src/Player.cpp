@@ -2,6 +2,7 @@
 #include <SFML/Window/Keyboard.hpp>
 #include <SFML/Graphics.hpp>
 #include <cstdlib>
+#include <cmath>
 
 
 Player::Player() : Entity("models/player.png") {
@@ -24,6 +25,14 @@ void Player::bounce(){
 FloatRect Player::getGlobalBounds(){
 	FloatRect bounds = _spr.getGlobalBounds();
 	return bounds;
+}
+
+bool Player::getMovement(){
+	if (this->velocity.x>0)
+	{
+		return true;
+	}
+	return false;
 }
 
 bool Player::isFalling(){

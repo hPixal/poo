@@ -58,14 +58,16 @@ void playScene::updateCollision(RenderWindow &win)
 
 	//Collision with borders
 
-	if (pos.x > win.getSize().y -11)
+	if (player->getPosition().x > win.getSize().x && player->getMovement())
 	{
-		player->teleport(-player->getGlobalBounds().width+10);
+		player->teleport(0-(player->_spr.getGlobalBounds().width));
 	}
-	if (pos.x+player->getGlobalBounds().width < 11)
+	if ((player->getPosition().x) < (0  - player->getGlobalBounds().width) && !player->getMovement())
 	{
-		player->teleport(win.getSize().y-10);
+		player->teleport(win.getSize().x);
 	}
+	
+	
 
 	std::cerr << plat->getCollision(*player) << this->player->isFalling() << std::endl;
 

@@ -26,9 +26,9 @@ void Platform::Update(Game &game) {
 bool Platform::collideWith(const Entity & ent2) const{
 	auto r1 = this->_spr.getGlobalBounds();
 	auto r2 = ent2._spr.getGlobalBounds();
-	r1.height = 2.f;
+	r1.height = 1.f;
 	
-	r2.height=1.f;
+	r2.top = r2.top + 18.f;
 	return r1.intersects(r2);
 }
 

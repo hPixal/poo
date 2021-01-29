@@ -15,6 +15,7 @@ public:
 	bool collideWith(const Entity & ent2) const override;
 	void Draw(RenderTarget & target) override;
 	void teleport(int x);
+	bool getMovement();
 	void bounce();
 	//Get Positions
 	Vector2f getPosition();
