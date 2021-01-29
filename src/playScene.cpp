@@ -7,9 +7,10 @@
 playScene::playScene(RenderWindow &win) {
 	this->pl_view = new View(win.getDefaultView().getCenter(),
 							 static_cast<Vector2f>(win.getSize()));
-	win.setView(*pl_view);
+	this->win = &win;
+	this->win->setView(*pl_view);
 	initVariables();
-	initBackgrounds(win);
+	initBackgrounds();
 }
 
 /******************INIT*******************/
@@ -20,13 +21,13 @@ void playScene::initVariables(){
 	this->player = new Player();
 }
 
-void playScene::initBackgrounds(RenderWindow &win){
+void playScene::initBackgrounds(){
 	backgrounds.resize(3);
 	backgrounds[0].loadFromFile("models/cloud_background.png");
 	level_background.setTexture(backgrounds[0]);
 	//Vector2u aux = backgrounds[0].getSize();
 	level_background.setScale(1,1);
-	level_background.setOrigin(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
+	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
 }
 
 /****************LEVEL CHECKER*************/
@@ -45,12 +46,12 @@ void playScene::draw_background(sf::RenderTarget &tar) const {
 }
 
 
-void playScene::updateCollision(RenderWindow &win)
+void playScene::updateCollision()
 {
 	Vector2f pos = this->player->getPosition();
 	//Collision with the bottom of screen
-	if (pos.y > win.mapPixelToCoords
-	   (Vector2i(0,win.getSize().y),*pl_view).y)
+	if (pos.y > win->mapPixelToCoords
+	   (Vector2i(0,win->getSize().y),*pl_view).y)
 	{
         std::cerr << "Muertisimo pa" << std::endl;
 		//ADD GAME OVER CALL
@@ -58,13 +59,13 @@ void playScene::updateCollision(RenderWindow &win)
 
 	//Collision with borders
 
-	if (player->getPosition().x > win.getSize().x && player->getMovement())
+	if (player->getPosition().x > win->getSize().x && player->getMovement())
 	{
 		player->teleport(0-(player->_spr.getGlobalBounds().width));
 	}
 	if ((player->getPosition().x) < (0  - player->getGlobalBounds().width) && !player->getMovement())
 	{
-		player->teleport(win.getSize().x);
+		player->teleport(win->getSize().x);
 	}
 	
 	
@@ -79,9 +80,9 @@ void playScene::updateCollision(RenderWindow &win)
 
 }
 
-void playScene::updateView(sf::RenderWindow &win){
+void playScene::updateView(){
 	if (player->_spr.getPosition().y < 
-	   win.mapPixelToCoords(Vector2i(0,1024/2),*pl_view).y)
+	   win->mapPixelToCoords(Vector2i(0,1024/2),*pl_view).y)
 	{
 		pl_view->setCenter(Vector2f(pl_view->getCenter().x,pl_view->getCenter().y-10.f));
 	}
@@ -91,9 +92,9 @@ void playScene::Update(Game &game)
 {
 	this->plat->Update(game,*pl_view,this->level);
 	this->updatePlayer();
-	this->updateCollision(game.m_window);
-	this->updateView(game.m_window);
-	this->updateBackgound(game.m_window);
+	this->updateCollision();
+	this->updateView();
+	this->updateBackgound();
 	game.m_window.setView(*pl_view);
 }
 
@@ -103,25 +104,25 @@ void playScene::updatePlayer(){
 	check_level();
 }
 
-void playScene::updateBackgound(sf::RenderWindow &win){
-	level_background.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
+void playScene::updateBackgound(){
+	level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
 }
 
 
-void playScene::Draw(RenderWindow &win) const {
+void playScene::Draw() const {
 
-	win.clear();
+	win->clear();
 	//Draw background
-	draw_background(win);
+	draw_background(*win);
 
 	//Render game
-	this->plat->Draw(win);
+	this->plat->Draw(*win);
 
 
-	this->player->Draw(win);
+	this->player->Draw(*win);
 
 
-	win.display();
+	win->display();
 
 }
 

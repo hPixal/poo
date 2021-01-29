@@ -1,6 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
 #include "Scene.hpp"
+#include "Menu.hpp"
 #include "playScene.hpp"
 using namespace sf;
 
@@ -9,7 +10,7 @@ Game::Game()
 {
 	m_window.setFramerateLimit(60);
     //FILL WITH FIRST SCENE AS menuScene 
-	this->m_scene = new playScene(m_window);
+	this->m_scene = new Menu(m_window);
 }
 
 void Game::Run ( ) {
@@ -30,7 +31,7 @@ void Game::Update ( ) {
 }
 
 void Game::Draw ( ) {
-	m_scene->Draw(m_window);
+	m_scene->Draw();
 }
 
 void Game::ProcessEvents ( ) {
