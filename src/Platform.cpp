@@ -1,29 +1,25 @@
 #include "Platform.hpp"
+#include "static_dirt_platform.hpp"
+#include "moving_dirt_platform.hpp"
+Platform::Platform(std::string file_loc) : Entity(file_loc) {
+	_spr.setScale(0.20,0.20);
+	_spr.setPosition(280,500);
+}
 
 int Platform::getpoints(){
 	if (canGetPoints)
 	{
 		canGetPoints = false;
-		return 10;
+		return points;
 	}
 	return 0;
 }
 
-Platform::Platform(std::string file_loc) : Entity(file_loc) {
-	_spr.setScale(0.20,0.20);
-	_spr.setPosition(280,500); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
-}
-
 void Platform::spawnPlatform(Vector2f pos){
-	_spr.setPosition(pos);
-	//this->Update();
+	this->_spr.setPosition(pos);
 }
 
-void Platform::Update(Game &game) { 
-	this->Draw(game.m_window); 
-}
-
-bool Platform::collideWith(const Entity & ent2) const{
+bool Platform::collideWith(const Entity & ent2){
 	auto r1 = this->_spr.getGlobalBounds();
 	auto r2 = ent2._spr.getGlobalBounds();
 	r1.height = 10.f;
@@ -32,7 +28,8 @@ bool Platform::collideWith(const Entity & ent2) const{
 	r2.height = 10.f;
 	return r2.intersects(r1);
 }
-
-void Platform::Draw(sf::RenderTarget &tar){
+/*
+void Platform::Draw(sf::RenderTarget &tar)const{
 	tar.draw(this->_spr);
 }
+*/

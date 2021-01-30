@@ -21,7 +21,7 @@ private:
 	std::vector<Texture> backgrounds;
 	Sprite level_background;
 	int max_platforms = 10;
-	int points=2;
+	int points=1;
 
 	//Initializers
 	void initVariables();
@@ -29,7 +29,7 @@ private:
 
 	//Private Functions
 	void draw_background(RenderTarget &win) const;
-	int level = 1;
+	int level = 4;
 public:
 	//Functions
 	playScene(sf::RenderWindow &win);

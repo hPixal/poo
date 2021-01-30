@@ -90,7 +90,7 @@ void Player::updatePhysics ( ) {
 	_spr.move(velocity);
 }
 
-bool Player::collideWith(const Entity & ent2) const{
+bool Player::collideWith(const Entity & ent2){
 	FloatRect aux = this->_spr.getGlobalBounds();
 	aux.height=1;
 	FloatRect aux2 = ent2._spr.getGlobalBounds();
@@ -108,7 +108,7 @@ bool Player::collideWith(const Entity & ent2) const{
 }
 
 
-void Player::Draw(RenderTarget & target) {
+void Player::Draw(RenderTarget & target) const {
 	target.draw(this->_spr);
 }
 

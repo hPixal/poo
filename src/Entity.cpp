@@ -8,7 +8,7 @@ Entity::Entity(std::string name){
     _spr.setTexture(_tex);
 }
 
-void Entity::Draw(RenderTarget &tar){
+void Entity::Draw(RenderTarget &tar)const{
     tar.draw(_spr);
 }
 /*
@@ -20,9 +20,6 @@ bool Entity::collideWith(const Entity & ent2) const {
 }
 */
 
-Entity::~Entity() {
-
-}
 
 /*
 This file is part of Skyjump.

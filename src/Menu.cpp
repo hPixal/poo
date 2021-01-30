@@ -54,7 +54,11 @@ bool Menu::MouseisInsideBox(Sprite spr){
         x = true;
     }
     
-    return true;
+    if (x&&y)
+    {
+        return true;
+    }
+    return false;
     
 }
 

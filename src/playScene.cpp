@@ -17,7 +17,7 @@ playScene::playScene(RenderWindow &win) {
 
 void playScene::initVariables(){
 	this->points = 1;
-	this->plat = new PlatformEngine(10);
+	this->plat = new PlatformEngine(10,points);
 	this->player = new Player();
 }
 
@@ -33,9 +33,16 @@ void playScene::initBackgrounds(){
 /****************LEVEL CHECKER*************/
 
 void playScene::check_level(){
-	if (points%100==0)
+	if (points/100>1)
 	{
-		level++;
+		level = 2;
+	}
+	if (points/300>1)
+	{
+		level = 3;
+	}
+	if (points/600>1){
+		level = 4;
 	}
 }
 
@@ -68,7 +75,8 @@ void playScene::updateCollision()
 	
 	
 
-	std::cerr << plat->getCollision(*player) << this->player->isFalling() << std::endl;
+	//std::cerr << plat->getCollision(*player) << this->player->isFalling() << std::endl;
+	//std::cerr << level << std::endl;
 
 	if (this->player->isFalling() && plat->getCollision(*player))
 	{

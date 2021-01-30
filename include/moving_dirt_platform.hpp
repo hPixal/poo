@@ -7,13 +7,14 @@
 
 using namespace sf;
 
-class static_dirt_platform : public Platform {
-
+class moving_dirt_platform : public Platform {
+    int m_speed;
 public:
-    static_dirt_platform(std::string filename);
+    moving_dirt_platform(std::string filename);
     void Update(Game &game) override;
-    ~static_dirt_platform() override { }
+    ~moving_dirt_platform() override { }
 };
+
 
 /*
 This file is part of Skyjump.

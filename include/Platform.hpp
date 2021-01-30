@@ -8,17 +8,18 @@ class Platform : public Entity {
 
 public:
     Platform(std::string file_loc);
-    //point system
+    //Point system
+    int points=10;
     bool canGetPoints=true;
     //Functions
     int getpoints();
     void spawnPlatform(Vector2f pos);
-    virtual void Update(Game &game); 
-    bool collideWith(const Entity & ent2) const override;
-    void Draw(sf::RenderTarget &tar) override;
+    /*virtual void Draw(sf::RenderTarget &tar)const override = 0;*/
 
     //Override
-    virtual ~Platform() { };
+    virtual bool collideWith(const Entity & ent2) override;
+    virtual void Update(Game &game)=0;
+    virtual ~Platform() override { }
 };
 
 /*
