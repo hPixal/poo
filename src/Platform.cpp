@@ -26,10 +26,11 @@ void Platform::Update(Game &game) {
 bool Platform::collideWith(const Entity & ent2) const{
 	auto r1 = this->_spr.getGlobalBounds();
 	auto r2 = ent2._spr.getGlobalBounds();
-	r1.height = 1.f;
+	r1.height = 10.f;
 	
-	r2.top = r2.top + 18.f;
-	return r1.intersects(r2);
+	r2.top = r2.top + r2.height;
+	r2.height = 10.f;
+	return r2.intersects(r1);
 }
 
 void Platform::Draw(sf::RenderTarget &tar){

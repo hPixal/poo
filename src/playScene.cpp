@@ -48,10 +48,8 @@ void playScene::draw_background(sf::RenderTarget &tar) const {
 
 void playScene::updateCollision()
 {
-	Vector2f pos = this->player->getPosition();
 	//Collision with the bottom of screen
-	if (pos.y > win->mapPixelToCoords
-	   (Vector2i(0,win->getSize().y),*pl_view).y)
+	if (this->player->getPosition().y > win->mapPixelToCoords(Vector2i(0.f,win->getSize().y),*pl_view).y)
 	{
         std::cerr << "Muertisimo pa" << std::endl;
 		//ADD GAME OVER CALL

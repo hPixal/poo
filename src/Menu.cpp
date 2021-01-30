@@ -43,13 +43,13 @@ bool Menu::MouseisInsideBox(Sprite spr){
     Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition());
     bool x;
     bool y;
-    if (mouse_pos.y > spr.getGlobalBounds().top &&
-        mouse_pos.y < (spr.getGlobalBounds().top+spr.getGlobalBounds().height))
+    if (mouse_pos.y > spr.getPosition().y &&
+        mouse_pos.y < (spr.getPosition().y+spr.getGlobalBounds().height))
     {
         y = true;
     }
-    if (mouse_pos.x > spr.getGlobalBounds().left &&
-        mouse_pos.x < (spr.getGlobalBounds().left + spr.getGlobalBounds().width))
+    if (mouse_pos.x > spr.getPosition().x &&
+        mouse_pos.x < (spr.getPosition().x + spr.getGlobalBounds().width))
     {
         x = true;
     }
@@ -66,7 +66,6 @@ void Menu::Update(Game &game){
     if (sf::Mouse::isButtonPressed(Mouse::Left)&& MouseisInsideBox(spr_buttons[0]))
     {
         game.SetScene(new playScene(game.m_window));
-        std::cerr << "FUNCA";
     }
     
 }
