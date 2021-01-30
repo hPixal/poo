@@ -29,7 +29,7 @@ private:
 
 	//Private Functions
 	void draw_background(RenderTarget &win) const;
-	int level = 4;
+	int level = 1;
 public:
 	//Functions
 	playScene(sf::RenderWindow &win);
