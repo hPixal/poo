@@ -108,7 +108,7 @@ Platform* PlatformEngine::getNewPlatform(int level){
             return new static_dirt_platform("models/platform_dirt.png");
         }
     case 4:
-        aux= rand()%6;
+        aux = rand()%6;
         if(aux == 1)
         {
             return new moving_cloud_platform("models/platform_cloud.png");
@@ -122,9 +122,18 @@ Platform* PlatformEngine::getNewPlatform(int level){
         {
             return new static_dirt_platform("models/platform_dirt.png");
         }
-        
-        
-            
+    case 5:
+        aux = rand()%6;
+        if (aux == 1 || aux == 2)
+        {
+            return new moving_cloud_platform("models/platform_cloud.png");
+        }else if (aux == 3 || aux == 4 || aux == 5 || aux == 0)
+        {
+            return new static_cloud_platform("models/platform_cloud.png");
+        } else if (aux == 6)
+        {
+            return new moving_dirt_platform("models/platform_dirt.png");
+        }
     default:
         std::cerr << "ERROR WITH AUX IN GETNEWPLATFOM()" << std::endl;
         break;

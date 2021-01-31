@@ -11,6 +11,14 @@ playScene::playScene(RenderWindow &win) {
 	this->win->setView(*pl_view);
 	initVariables();
 	initBackgrounds();
+
+
+
+	m_font.loadFromFile("fonts/asap.ttf");
+	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
+	p_disp.setString(std::to_string(points));
+	p_disp.setColor(Color::White);
+	p_disp.setScale(2,2);
 }
 
 /******************INIT*******************/
@@ -33,17 +41,22 @@ void playScene::initBackgrounds(){
 /****************LEVEL CHECKER*************/
 
 void playScene::check_level(){
-	if (points/100>1)
+	if (points/100>1 && level<2)
 	{
 		level = 2;
 	}
-	if (points/300>1)
+	if (points/300>1 && level<3)
 	{
 		level = 3;
 	}
-	if (points/600>1){
+	if (points/600>1 && level<4){
 		level = 4;
 	}
+	if (points/800>1 && level<5)
+	{
+		level = 5;
+	}
+	
 }
 
 /***************DRAW AND UPDATE***********/
@@ -102,6 +115,8 @@ void playScene::Update(Game &game)
 	this->updateView();
 	this->updateBackgound();
 	game.m_window.setView(*pl_view);
+	p_disp.setPosition(game.m_window.mapPixelToCoords(Vector2i(0,0),*pl_view));
+	p_disp.setString(std::to_string(points));
 }
 
 
@@ -127,6 +142,7 @@ void playScene::Draw() const {
 
 	this->player->Draw(*win);
 
+	win->draw(p_disp);
 
 	win->display();
 

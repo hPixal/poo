@@ -17,6 +17,8 @@ private:
 	PlatformEngine* plat;
 	Player* player;
 	View* pl_view;
+	Font m_font;
+	Text p_disp,l_disp;
 	RenderWindow* win;
 	std::vector<Texture> backgrounds;
 	Sprite level_background;

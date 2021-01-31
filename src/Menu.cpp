@@ -40,7 +40,7 @@ Vector2f Menu::center(Sprite &spr,int y){
 }
 
 bool Menu::MouseisInsideBox(Sprite spr){
-    Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition());
+    Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition(*win));
     bool x;
     bool y;
     if (mouse_pos.y > spr.getPosition().y &&
