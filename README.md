@@ -12,6 +12,6 @@ Link a la aplicación : https://play.google.com/store/apps/details?id=me.pou.app
 
 # Notas
 Colaboradores:  
-Brisa Atuña  
+Brisa Antuña  
 Nahuel Gareis  
 Estudiantes de Ingeniería en Informática
