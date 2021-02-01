@@ -35,13 +35,13 @@ private:
 public:
 	//Functions
 	playScene(sf::RenderWindow &win);
-	void check_level();
-	void updatePlayer();
-	void updateCollision();
-	void updateView();
-	void updateBackgound();
-	void Update(Game &game) override;
-	void Draw() const override;
+	void check_level(); //Increases the level regarding the points got
+	void updatePlayer(); //Updates the player's position
+	void updateCollision(); //Updates all collisions
+	void updateView(); //Updates the views's center
+	void updateBackgound(); //Sets the background regarding the actual level value (WIP)
+	void Update(Game &game) override; //<-this
+	void Draw() const override; //<-this
 	~playScene() override;
 
 };

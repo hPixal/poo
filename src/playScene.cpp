@@ -15,10 +15,10 @@ playScene::playScene(RenderWindow &win) {
 
 
 	m_font.loadFromFile("fonts/asap.ttf");
+	p_disp.setFont(m_font);
 	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
-	p_disp.setString(std::to_string(points));
 	p_disp.setColor(Color::White);
-	p_disp.setScale(2,2);
+	p_disp.setScale(1,1);
 }
 
 /******************INIT*******************/
@@ -86,10 +86,7 @@ void playScene::updateCollision()
 		player->teleport(win->getSize().x);
 	}
 	
-	
-
-	//std::cerr << plat->getCollision(*player) << this->player->isFalling() << std::endl;
-	//std::cerr << level << std::endl;
+	//Collision with platforms
 
 	if (this->player->isFalling() && plat->getCollision(*player))
 	{
@@ -116,7 +113,7 @@ void playScene::Update(Game &game)
 	this->updateBackgound();
 	game.m_window.setView(*pl_view);
 	p_disp.setPosition(game.m_window.mapPixelToCoords(Vector2i(0,0),*pl_view));
-	p_disp.setString(std::to_string(points));
+	p_disp.setString("Points: "+std::to_string(points-1));
 }
 
 

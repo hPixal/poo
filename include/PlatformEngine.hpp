@@ -21,12 +21,12 @@ class PlatformEngine {
 
     PlatformEngine(int platmax,int &points);
 
-    bool getCollision(const Entity &player);
-    void Update(Game &g,View &pl_view,int level);
-    void initVector();
-    void givePos(Vector2f bounds,int prevPlat);
+    void initVector(); 
+    bool getCollision(const Entity &player); //Checks if players collides with any platform, and if so, gets the platform's points
+    void Update(Game &g,View &pl_view,int level); //Checks if new platforms are needed and deletes the ones that are off the bottom of the screen
+    void givePos(Vector2f bounds,int prevPlat); //Returs a random position in the screen
+    Platform* getNewPlatform(int level); //Returns a random platform type regarding the level in which the player is at
     void Draw(RenderWindow &win);
-    Platform* getNewPlatform(int level);
 
     ~PlatformEngine();
 };
