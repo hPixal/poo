@@ -5,20 +5,19 @@
 #include "Game.hpp"
 
 class Platform : public Entity {
-
-public:
-    Platform(std::string file_loc);
+protected:
     //Point system
     int points=10;
-    bool canGetPoints=true;
+    bool canGetPoints=true; //This converts to false once the player collides 1 time with the platform
+public:
+    Platform(std::string file_loc);
     //Functions
-    int getpoints();
-    void spawnPlatform(Vector2f pos);
-    /*virtual void Draw(sf::RenderTarget &tar)const override = 0;*/
+    int getpoints(); //Returns this->points if canGetPoints
+    void spawnPlatform(Vector2f pos); //Spawns the platform at the given position
 
     //Override
-    virtual bool collideWith(const Entity & ent2) override;
-    virtual void Update(Game &game)=0;
+    virtual bool collideWith(const Entity & ent2) override; //Returns true if the player collides this->_spr
+    virtual void Update(Game &game)=0; //All platform childs requires to override this Update function
     virtual ~Platform() override { }
 };
 

@@ -55,10 +55,6 @@ void Game::ProcessEvents ( ) {
 	} 
 }
 
-Event Game::getEvent(){
-	return m_ev;
-}
-
 void Game::SetScene (Scene * next_scene) {
 	m_next_scene = next_scene;
 }

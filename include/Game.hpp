@@ -2,25 +2,24 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.hpp"
 using namespace sf;
+class Scene;
 
 /*
 Skyjump main game motor
 */
-class Scene;
 
 class Game {
 public:
     //Functions
 	Game();
-	void Run();
-	void ProcessEvents();
-	void Update();
-	void Draw();
-	void SetScene(Scene *next_scene);
-    Event getEvent();
+	void Run();//Starts the game loop
+	void ProcessEvents();//Pulls system events
+	void Update();//Updates all sub-classes
+	void Draw();//Calls for win.draw() to all sub-classes
+	void SetScene(Scene *next_scene);//Deletes old scene and switches to the next
     //Variables
-    Event m_ev;
 	RenderWindow m_window;
+    Event m_ev;
 private:
 	Scene *m_scene;
 	Scene *m_next_scene = nullptr;

@@ -44,6 +44,7 @@ void PlatformEngine::Update(Game &g,View &pl_view,int level){
         if (current_platforms[0]->_spr.getPosition().y > g.m_window.
             mapPixelToCoords(Vector2i(640,1024),pl_view).y)
         {
+            delete current_platforms[0];
             current_platforms.erase(current_platforms.begin());
         }
 

@@ -8,10 +8,10 @@
 using namespace sf;
 
 class moving_dirt_platform : public Platform {
-    int m_speed;
+    int m_speed; //speed of the platform
 public:
     moving_dirt_platform(std::string filename);
-    void Update(Game &game) override;
+    void Update(Game &game) override; // This mostly updates the postion of the platform
     ~moving_dirt_platform() override { }
 };
 

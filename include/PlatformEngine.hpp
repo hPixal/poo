@@ -5,22 +5,29 @@
 #include "Platform.hpp"
 using namespace sf;
 
+/*
+    Manages the platform spawn & despawn
+*/
 
 class PlatformEngine {
     std::vector<Platform*> current_platforms;
-    //var
+    //vars
     int plat_distance;
     size_t max_plat=1;
     int level;
     int* getpoits;
+
     public:
-    PlatformEngine(int platmax,int &points); //<-- constructor
+
+    PlatformEngine(int platmax,int &points);
+
     bool getCollision(const Entity &player);
     void Update(Game &g,View &pl_view,int level);
     void initVector();
     void givePos(Vector2f bounds,int prevPlat);
     void Draw(RenderWindow &win);
     Platform* getNewPlatform(int level);
+
     ~PlatformEngine();
 };
 
