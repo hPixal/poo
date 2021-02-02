@@ -21,9 +21,9 @@ class death_scene :public Scene{
     Sprite backToMenu;
     Sprite background;
 public:
-    death_scene(RenderWindow &win,int points);
-    Vector2f center(FloatRect bounds,int y);
-    void Update(Game &g)override;
+    death_scene(RenderWindow &win,int points);//intializes all texts and sprites
+    Vector2f center(FloatRect bounds,int y);//centers in the middle of the screen a given sprite
+    void Update(Game &g)override; //Checks if the this->backToMenu button is clicked
     bool MouseisInsideBox(Sprite spr);//checks if mouse is inside spr
     void Draw() const override;
     ~death_scene();
