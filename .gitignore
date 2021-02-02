@@ -1,3 +1,4 @@
 Makefile
+.gitignore
 .directory
 /.vscode/
