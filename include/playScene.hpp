@@ -37,7 +37,7 @@ public:
 	playScene(sf::RenderWindow &win);
 	void check_level(); //Increases the level regarding the points got
 	void updatePlayer(); //Updates the player's position
-	void updateCollision(); //Updates all collisions
+	void updateCollision(Game &game); //Updates all collisions
 	void updateView(); //Updates the views's center
 	void updateBackgound(); //Sets the background regarding the actual level value (WIP)
 	void Update(Game &game) override; //<-this

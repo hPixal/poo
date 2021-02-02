@@ -3,6 +3,7 @@
 #include "Scene.hpp"
 #include "PlatformEngine.hpp"
 #include "Game.hpp"
+#include "death_scene.hpp"
 
 playScene::playScene(RenderWindow &win) {
 	this->pl_view = new View(win.getDefaultView().getCenter(),
@@ -66,13 +67,14 @@ void playScene::draw_background(sf::RenderTarget &tar) const {
 }
 
 
-void playScene::updateCollision()
+void playScene::updateCollision(Game &game)
 {
 	//Collision with the bottom of screen
-	if (this->player->getPosition().y > win->mapPixelToCoords(Vector2i(0.f,win->getSize().y),*pl_view).y)
+	if (this->player->getPosition().y > 
+		win->mapPixelToCoords(Vector2i(0,win->getSize().y + 3*(this->player->_spr.getGlobalBounds().height)),*pl_view).y)
 	{
-        std::cerr << "Muertisimo pa" << std::endl;
-		//ADD GAME OVER CALL
+		this->pl_view->setCenter(win->getDefaultView().getCenter());
+        game.SetScene(new death_scene(game.m_window,this->points));
 	}
 
 	//Collision with borders
@@ -108,7 +110,7 @@ void playScene::Update(Game &game)
 {
 	this->plat->Update(game,*pl_view,this->level);
 	this->updatePlayer();
-	this->updateCollision();
+	this->updateCollision(game);
 	this->updateView();
 	this->updateBackgound();
 	game.m_window.setView(*pl_view);
