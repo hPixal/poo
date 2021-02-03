@@ -1,6 +1,7 @@
 #pragma once
 #include <SFML/Graphics.hpp>
 #include "Game.hpp"
+using namespace sf;
 class Game;
 
 /*
@@ -9,13 +10,15 @@ composed just so Game class can accept and display them.
 */
 
 class Scene {
-
+protected:
+    RenderWindow* win;
 public:
     Scene();
     virtual void Update(Game &game) = 0; //All scenes must have it's own overrided update functi
                                          //and a game to output data
     virtual void Draw() const = 0; //All scenes must have an overrided draw
                                                         //function and get window to display itself
+    bool MouseisInsideBox(Sprite spr); //checks if mouse is inside spr 
     virtual ~Scene(){};
 };
 

@@ -5,6 +5,29 @@ Scene::Scene(){
 
 }
 
+bool Scene::MouseisInsideBox(Sprite spr){
+    Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition(*win));
+    bool x;
+    bool y;
+    if (mouse_pos.y > spr.getPosition().y &&
+        mouse_pos.y < (spr.getPosition().y+spr.getGlobalBounds().height))
+    {
+        y = true;
+    }
+    if (mouse_pos.x > spr.getPosition().x &&
+        mouse_pos.x < (spr.getPosition().x + spr.getGlobalBounds().width))
+    {
+        x = true;
+    }
+    
+    if (x&&y)
+    {
+        return true;
+    }
+    return false;
+    
+}
+
 /*
 This file is part of Skyjump.
 

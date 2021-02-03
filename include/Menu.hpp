@@ -6,7 +6,6 @@
 using namespace sf;
 
 class Menu : public Scene{
-    RenderWindow* win;
     //Buttons
     Texture background;
     Texture title;
@@ -17,7 +16,6 @@ class Menu : public Scene{
 public:
     Menu(RenderWindow &win);//Set &win to this->win
     Vector2f center(Sprite &spr,int y);//Returns the coordinates of where does spr needs to be in order to be in the exact center
-    bool MouseisInsideBox(Sprite spr);//checks if mouse is inside spr
     void Update(Game &game) override;//It mostly checks wether or not the mouse is clicking the buttons
     void Draw() const override;//Clears the screen and calls for win.draw(_spr) for each _spr in the screen
     ~Menu();

@@ -8,7 +8,6 @@ Death Scene that pops out when yo lose
 */
 
 class death_scene :public Scene{
-    RenderWindow* win;
     int points;
 
     //Fonts and Text
@@ -24,7 +23,6 @@ public:
     death_scene(RenderWindow &win,int points);//intializes all texts and sprites
     Vector2f center(FloatRect bounds,int y);//centers in the middle of the screen a given sprite
     void Update(Game &g)override; //Checks if the this->backToMenu button is clicked
-    bool MouseisInsideBox(Sprite spr);//checks if mouse is inside spr
     void Draw() const override;
     ~death_scene();
 };

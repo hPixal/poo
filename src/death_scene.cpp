@@ -11,7 +11,7 @@ death_scene::death_scene(RenderWindow &win,int points){
     this->points = points;
 
     f.loadFromFile("fonts/asap.ttf");
-    gameover.loadFromFile("models/game_over.png");
+    gameover.loadFromFile("models/game_over.png"    );
     scene_background.loadFromFile("models/death_scene.png");
     button.loadFromFile("models/back_to_menu.png");
     backToMenu.setTexture(button);
@@ -33,29 +33,6 @@ death_scene::death_scene(RenderWindow &win,int points){
 
 Vector2f death_scene::center(FloatRect bounds,int y){
     return Vector2f(win->getDefaultView().getCenter().x - (bounds.width/2),y);
-}
-
-bool death_scene::MouseisInsideBox(Sprite spr){
-    Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition(*win));
-    bool x;
-    bool y;
-    if (mouse_pos.y > spr.getPosition().y &&
-        mouse_pos.y < (spr.getPosition().y+spr.getGlobalBounds().height))
-    {
-        y = true;
-    }
-    if (mouse_pos.x > spr.getPosition().x &&
-        mouse_pos.x < (spr.getPosition().x + spr.getGlobalBounds().width))
-    {
-        x = true;
-    }
-    
-    if (x&&y)
-    {
-        return true;
-    }
-    return false;
-    
 }
 
 void death_scene::Update(Game &g){
