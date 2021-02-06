@@ -9,3 +9,4 @@ Makefile
 .vscode/launch.json
 .vscode/tasks.json
 .gitignore
+bin/HighScores.bin

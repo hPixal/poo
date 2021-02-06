@@ -1,14 +1,19 @@
 #include <SFML/Graphics.hpp>
 #include <fstream>
+#include <cstring>
+#include <string>
 #include "death_scene.hpp"
 #include "Game.hpp"
 #include "Scene.hpp"
 #include "Menu.hpp"
+#include "hsStruct.hpp"
+using namespace std;
 using namespace sf;
 
-death_scene::death_scene(RenderWindow &win,int points){
+death_scene::death_scene(RenderWindow &win,int points/*,string name*/){ //deberiamos tener el nombre del jugador tambien
     this->win = &win;
-    this->points = points;
+    this->score = points; 
+	/*this->_name = ACA HAY QUE PASAR DE STRING A CADENA DE CHAR name;*/
 
     f.loadFromFile("fonts/asap.ttf");
     gameover.loadFromFile("models/game_over.png"    );
@@ -19,7 +24,7 @@ death_scene::death_scene(RenderWindow &win,int points){
     gameOver.setTexture(gameover);
 
     p_display.setFont(f);
-    p_display.setString("Your score: "+std::to_string(this->points));
+    p_display.setString("Your score: "+std::to_string(this->score));
 
     p_display.setScale(1.25,1.25);
     backToMenu.setScale(0.25,0.25);
@@ -38,6 +43,8 @@ Vector2f death_scene::center(FloatRect bounds,int y){
 void death_scene::Update(Game &g){
     if (this->MouseisInsideBox(backToMenu) && sf::Mouse::isButtonPressed(Mouse::Left))
     {   
+        char caux[20] = "test";
+        g.AddScore(hsStruct(caux,this->score)); 
         g.SetScene(new Menu(*this->win));
     }
     
@@ -52,6 +59,44 @@ void death_scene::Draw() const {
     this->win->display();
 }
 
-death_scene::~death_scene() {
 
+
+death_scene::~death_scene() {
+	
 }
+
+	/*fstream scores("Scores.dat",ios::binary|ios::ate|ios::in|ios::out);
+	if(!scores.is_open()){
+		cerr << "Error al cargar highscores " << endl;
+	}
+	if(scores.tellp()/(sizeof(int)+15)<10){
+		scores.write(reinterpret_cast<char*>(&_name),sizeof(_name));
+	}else{
+		scores.seekg(9*(sizeof(int)+15)+15);//para avanzar hasta el ultimo score
+		int ultimo;
+		scores.read(reinterpret_cast<char*>(&ultimo),sizeof(ultimo));
+		if(_points>ultimo){
+			//HACER UN VECTOR CON TODOS LOS DATOS DEL ARCHIVO< REEMPLAZAR EL ULTIMO Y ORDENAR
+		}
+	}*/
+	
+/*
+This file is part of Skyjump.
+
+    Skyjump is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    Skyjump is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with Skyjump.  If not, see <https://www.gnu.org/licenses/>.
+*/
+
+
+
+

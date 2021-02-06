@@ -20,6 +20,8 @@ class highscores_menu : public Scene{
     Sprite s_title;
     Sprite backToMenu;
     Sprite background;
+    vector<Text> _names;
+    vector<Text> _scores;
 public:
     highscores_menu(RenderWindow &win);
     Vector2f center(FloatRect bounds,int y);

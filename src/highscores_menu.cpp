@@ -1,6 +1,8 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include "string.h"
 #include "highscores_menu.hpp"
 #include "Scene.hpp"
 #include "Menu.hpp"
@@ -29,8 +31,16 @@ highscores_menu::highscores_menu(RenderWindow &win) {
     scores.setPosition(center(scores.getGlobalBounds(),320));
     backToMenu.setPosition(center(backToMenu.getGlobalBounds(),760));
     background.setPosition(0,0);
-    s_title.setPosition(center(s_title.getGlobalBounds(),60));
+    s_title.setPosition(center(s_title.getGlobalBounds(),60));    
 
+    _names.resize(10);
+    _scores.resize(10);
+    for (int i = 0; i < 10; i++)
+    {
+        _names[i].setFont(f);
+        _scores[i].setFont(f);
+    }
+    
 
 
 }
@@ -39,16 +49,35 @@ Vector2f highscores_menu::center(FloatRect bounds,int y){
     return Vector2f(win->getDefaultView().getCenter().x - (bounds.width/2),y);
 }
 void highscores_menu::Update(Game &g){
+    int pos = 400;
     if (Mouse::isButtonPressed(Mouse::Left) && this->MouseisInsideBox(backToMenu))
     {
         g.SetScene(new Menu(*win));
     }
+    vector<hsStruct> highscore = g.getHighscore();
+    for (size_t i = 0; i < highscore.size(); i++)
+    {
+        _names[i].setString(highscore[i]._name);
+        _scores[i].setString(to_string(highscore[i]._points));
+        _names[i].setScale(1,1);
+        _names[i].setPosition(Vector2f(20,pos+30*(i+1)));
+        _scores[i].setScale(1,1);
+        _scores[i].setPosition(Vector2f(640-(_scores[i].getGlobalBounds().width+20),pos+30*(i+1)));
+    }
+        
+
 }
 void highscores_menu::Draw() const{
     this->win->clear();
     this->win->draw(background);
     this->win->draw(s_title);
     this->win->draw(scores);
+    for (size_t i = 0; i < _names.size(); i++)
+    {
+        this->win->draw(_names[i]);
+        this->win->draw(_scores[i]);
+    }
+    
     this->win->draw(backToMenu);
     this->win->display();
 }

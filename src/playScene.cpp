@@ -18,7 +18,7 @@ playScene::playScene(RenderWindow &win) {
 	m_font.loadFromFile("fonts/asap.ttf");
 	p_disp.setFont(m_font);
 	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
-	p_disp.setColor(Color::White);
+	p_disp.setColor(Color(255,255,255));
 	p_disp.setScale(1,1);
 }
 
