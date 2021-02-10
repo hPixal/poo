@@ -55,7 +55,8 @@ void highscores_menu::Update(Game &g){
         g.SetScene(new Menu(*win));
     }
     vector<hsStruct> highscore = g.getHighscore();
-    for (size_t i = 0; i < highscore.size(); i++)
+    sort(highscore.begin(),highscore.end(),reverse_sort);
+    for (size_t i = 0; i < highscore.size() ; i++)
     {
         _names[i].setString(highscore[i]._name);
         _scores[i].setString(to_string(highscore[i]._points));
@@ -80,6 +81,10 @@ void highscores_menu::Draw() const{
     
     this->win->draw(backToMenu);
     this->win->display();
+}
+
+bool highscores_menu::reverse_sort(hsStruct a1,hsStruct a2){
+   return a2._points<a1._points;
 }
 
 highscores_menu::~highscores_menu() {

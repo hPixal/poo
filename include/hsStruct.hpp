@@ -22,10 +22,18 @@ struct hsStruct{
 		this->_points = points;
 	}
 	bool operator<(hsStruct aux){
-		if (aux._points<this->_points)
+		if (this->_points<aux._points)
+		{
+			return true;
+		}
+		return false;
+	}
+	bool operator>(hsStruct aux){
+		if (this->_points>aux._points)
 		{
 			return true;
 		}
 		return false;
 	}
 };
+

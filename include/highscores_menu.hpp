@@ -27,5 +27,6 @@ public:
     Vector2f center(FloatRect bounds,int y);
     void Update(Game &g) override;
     void Draw() const override;
+    static bool reverse_sort(hsStruct a1,hsStruct a2);
     ~highscores_menu();
 };

@@ -21,9 +21,11 @@ private:
 	Text p_disp,l_disp;
 	std::vector<Texture> backgrounds;
 	Sprite level_background;
+	Sprite change_background;
 	int max_platforms = 10;
 	int points=1;
-
+	int transp=255;
+	bool level_change;
 	//Initializers
 	void initVariables();
 	void initBackgrounds();

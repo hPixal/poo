@@ -14,7 +14,6 @@ playScene::playScene(RenderWindow &win) {
 	initBackgrounds();
 
 
-
 	m_font.loadFromFile("fonts/asap.ttf");
 	p_disp.setFont(m_font);
 	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
@@ -31,31 +30,42 @@ void playScene::initVariables(){
 }
 
 void playScene::initBackgrounds(){
-	backgrounds.resize(3);
-	backgrounds[0].loadFromFile("models/cloud_background.png");
+	backgrounds.resize(10);
+	backgrounds[0].loadFromFile("models/cave_background.jpg");
+	backgrounds[1].loadFromFile("models/cave_background.jpg");
+	backgrounds[2].loadFromFile("models/cloud_background.png");
+	backgrounds[3].loadFromFile("models/stratosphere_background.jpg");
+	backgrounds[4].loadFromFile("models/space_background.jpg");
 	level_background.setTexture(backgrounds[0]);
+	change_background.setTexture(backgrounds[level]);
 	//Vector2u aux = backgrounds[0].getSize();
-	level_background.setScale(1,1);
+	level_background.setScale(1.25,1.25);
 	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
 }
 
 /****************LEVEL CHECKER*************/
 
 void playScene::check_level(){
-	if (points/100>1 && level<2)
+	if (points/300.0>1 && level<2) //Cave
 	{
 		level = 2;
+		level_change = true;
+		change_background.setScale(1.25,1.25);
 	}
-	if (points/300>1 && level<3)
+	if (points/900.0>1 && level<3) //Sky
+	{ 
+		level = 3; 
+		level_change = true;
+	}
+	if (points/1600.0>1 && level<4) //Sky
 	{
-		level = 3;
-	}
-	if (points/600>1 && level<4){
 		level = 4;
+		level_change = true;
 	}
-	if (points/800>1 && level<5)
+	if (points/2200.0>1 && level<5) //Space
 	{
 		level = 5;
+		level_change = true;
 	}
 	
 }
@@ -63,6 +73,7 @@ void playScene::check_level(){
 /***************DRAW AND UPDATE***********/
 
 void playScene::draw_background(sf::RenderTarget &tar) const {
+	tar.draw(this->change_background);
 	tar.draw(this->level_background);
 }
 
@@ -125,7 +136,21 @@ void playScene::updatePlayer(){
 }
 
 void playScene::updateBackgound(){
-	level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	this->change_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	if(level_change){
+		if (this->transp<5)
+		{
+			this->level_change = false;
+			this->transp = 255;
+			this->level_background=change_background;
+			this->level_background.setColor(Color(255,255,255,transp));
+			this->change_background.setTexture(backgrounds[this->level]);
+		}else{
+			this->transp--;
+			this->level_background.setColor(Color(255,255,255,transp));
+		}
+	}
 }
 
 

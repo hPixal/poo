@@ -99,12 +99,13 @@ void Game::AddScore (hsStruct score) {
 
 	if(Scores[0]._points<score._points){
 		Scores[0] = score;
-		sort(Scores.begin(),Scores.begin());
+		sort(Scores.begin(),Scores.end());
 	}
 	saveScores();
 }
 
 vector<hsStruct> Game::getHighscore(){
+	this->saveScores();
 	return this->Scores;
 }
 
