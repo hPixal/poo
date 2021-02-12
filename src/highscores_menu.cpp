@@ -2,6 +2,7 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <vector>
 #include "string.h"
 #include "highscores_menu.hpp"
 #include "Scene.hpp"
@@ -54,12 +55,12 @@ void highscores_menu::Update(Game &g){
     {
         g.SetScene(new Menu(*win));
     }
-    vector<hsStruct> highscore = g.getHighscore();
+    std::vector<hsStruct> highscore = g.getHighscore();
     sort(highscore.begin(),highscore.end(),reverse_sort);
     for (size_t i = 0; i < highscore.size() ; i++)
     {
         _names[i].setString(highscore[i]._name);
-        _scores[i].setString(to_string(highscore[i]._points));
+        _scores[i].setString(std::to_string(highscore[i]._points));
         _names[i].setScale(1,1);
         _names[i].setPosition(Vector2f(20,pos+30*(i+1)));
         _scores[i].setScale(1,1);

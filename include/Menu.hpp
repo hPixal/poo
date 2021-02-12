@@ -3,10 +3,14 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.hpp"
 #include "playScene.hpp"
+#include "InputBox.hpp"
 using namespace sf;
 
 class Menu : public Scene{
+    InputText in;;
     //Buttons
+    char user[20];
+    Font font;
     Texture background;
     Texture title;
     Sprite spr_bg;

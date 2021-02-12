@@ -11,8 +11,9 @@ struct hsStruct{
 		return false;
 	}*///La comente porque me parece que sort usa solo <, no >
 	hsStruct(){
-
+		
 	}
+
 	hsStruct(char name[20], int points){
 		for (int i = 0; i < 20; i++)
 		{

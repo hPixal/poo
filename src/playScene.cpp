@@ -16,7 +16,7 @@ playScene::playScene(RenderWindow &win) {
 
 	m_font.loadFromFile("fonts/asap.ttf");
 	p_disp.setFont(m_font);
-	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,0),*pl_view));
+	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,-100),*pl_view));
 	p_disp.setColor(Color(255,255,255));
 	p_disp.setScale(1,1);
 }
@@ -39,8 +39,8 @@ void playScene::initBackgrounds(){
 	level_background.setTexture(backgrounds[0]);
 	change_background.setTexture(backgrounds[level]);
 	//Vector2u aux = backgrounds[0].getSize();
-	level_background.setScale(1.25,1.25);
-	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	//level_background.setScale(1.50,1.50);
+	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
 }
 
 /****************LEVEL CHECKER*************/
@@ -50,22 +50,25 @@ void playScene::check_level(){
 	{
 		level = 2;
 		level_change = true;
-		change_background.setScale(1.25,1.25);
+		//change_background.setScale(1.50,1.50);
 	}
 	if (points/900.0>1 && level<3) //Sky
 	{ 
 		level = 3; 
 		level_change = true;
+		//change_background.setScale(1.50,1.50);
 	}
 	if (points/1600.0>1 && level<4) //Sky
 	{
 		level = 4;
 		level_change = true;
+		//change_background.setScale(1.50,1.50);
 	}
 	if (points/2200.0>1 && level<5) //Space
 	{
 		level = 5;
 		level_change = true;
+		//change_background.setScale(1.50,1.50);
 	}
 	
 }
@@ -136,8 +139,8 @@ void playScene::updatePlayer(){
 }
 
 void playScene::updateBackgound(){
-	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
-	this->change_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
+	this->change_background.setPosition(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
 	if(level_change){
 		if (this->transp<5)
 		{

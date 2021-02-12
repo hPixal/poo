@@ -1,8 +1,8 @@
 #pragma once
 #include <SFML/Graphics.hpp>
+#include <vector>
 #include "Scene.hpp"
 #include "hsStruct.hpp"
-using namespace std;
 using namespace sf;
 class Scene;
 
@@ -22,15 +22,16 @@ public:
 	// Para el sistema de puntajes
 	void InitHighScore();//passes the data from the Tanto file to a vector of scores
 	void AddScore(hsStruct score);//if the score is higher than the last score saved, it add the score to the scores vector
-	vector<hsStruct> getHighscore();
+	std::vector<hsStruct> getHighscore();
 	void saveScores();
 	~Game();
 	
     //Variables
 	RenderWindow m_window;
+	hsStruct aux;
     Event m_ev;
 private:
-	vector<hsStruct> Scores; 
+	std::vector<hsStruct> Scores; 
 	Scene *m_scene;
 	Scene *m_next_scene = nullptr;
 };

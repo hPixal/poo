@@ -9,7 +9,7 @@ using namespace std;
 using namespace sf;
 
 Game::Game() 
-	: m_window(VideoMode(640,1024),"Skyjump")
+	: m_window(VideoMode(640,1024),"Skyjump") , aux("anonimo",0)
 {
 	m_window.setFramerateLimit(60);
     //FILL WITH FIRST SCENE AS menuScene 

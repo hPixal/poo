@@ -5,12 +5,16 @@
 #include <cmath>
 
 
-Player::Player() : Entity("models/player.png") {
-	_spr.setScale(0.25,0.25);
+Player::Player() : Entity("models/player_idle.png") {
+	_spr.setScale(0.40,0.40);
 	_spr.setPosition(280,700); //esta es una posicion cualquiera por ahora xq no se el tamano del jugador
 	_spr.setOrigin(_spr.getLocalBounds().left+(_spr.getGlobalBounds().width/2.f),
 					_spr.getGlobalBounds().top+(_spr.getGlobalBounds().top/2.f));
 	initPhysics();
+	v_tex.resize(3);
+	v_tex[0].loadFromFile("models/player_idle.png");
+	v_tex[1].loadFromFile("models/player_movingUp.png");
+	v_tex[2].loadFromFile("models/player_movingDown.png");
 }
 
 Vector2f Player::getPosition(){
@@ -19,6 +23,7 @@ Vector2f Player::getPosition(){
 }
 
 void Player::bounce(){
+	this->_spr.setTexture(this->v_tex[0]);
 	this->velocity.y=(-38);
 }
 
@@ -39,8 +44,10 @@ bool Player::isFalling(){
 	//std::cerr <<"Velocity: " << this->velocity.y << std::endl;
 	if (velocity.y>0)
 	{
+		this->_spr.setTexture(this->v_tex[2]);
 		return true;
 	}
+	this->_spr.setTexture(this->v_tex[1]);
 	return false;
 }
 

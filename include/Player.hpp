@@ -1,6 +1,8 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 #include <SFML/Graphics.hpp>
+#include <iostream>
+#include <vector>
 #include "Entity.hpp"
 using namespace sf;
 
@@ -22,6 +24,7 @@ public:
 	FloatRect getGlobalBounds(); //Rerturns this->_spr.getGlobalBounds()
 	//Get States
 	bool isFalling(); //Returns true if the player is falling
+	std::vector<Texture> v_tex;
 private:
  
 	//Physics

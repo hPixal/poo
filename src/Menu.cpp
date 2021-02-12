@@ -3,12 +3,20 @@
 #include <SFML/Graphics.hpp>
 #include "Scene.hpp"
 #include "highscores_menu.hpp"
+#include "InputBox.hpp"
+#include <string.h>
 using namespace sf;
 
 
-Menu::Menu(RenderWindow &win) {
-    this->win = &win;
+Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
+    this->win = &win; 
+    font.loadFromFile("fonts/asap.ttf");
+    
+    in.setMaxChars(20);
+	in.setSingleWord(true);
 
+
+    in.setPosition(200,800);
     buttons.resize(3);
     spr_buttons.resize(3);
 
@@ -63,7 +71,17 @@ void Menu::Update(Game &game){
     {
         game.SetScene(new highscores_menu(game.m_window));
     }
-    
+
+
+    if (game.m_ev.type==sf::Event::KeyPressed && game.m_ev.key.code==sf::Keyboard::Return) { 
+			std::string _strin = this->in.getValue();
+            char caux[20];
+            strcpy(caux,_strin.c_str());
+			*game.aux._name = *caux;
+		} else in.processEvent(game.m_ev); 
+
+
+    this->in.update();
 }
 
 void Menu::Draw() const{
@@ -76,7 +94,7 @@ void Menu::Draw() const{
     {
         win->draw(this->spr_buttons[i]);
     }
-    
+
     win->display();
 
 }

@@ -43,8 +43,9 @@ Vector2f death_scene::center(FloatRect bounds,int y){
 void death_scene::Update(Game &g){
     if (this->MouseisInsideBox(backToMenu) && sf::Mouse::isButtonPressed(Mouse::Left))
     {   
-        char caux[20] = "test";
-        g.AddScore(hsStruct(caux,this->score)); 
+        //char caux[20] = "test";
+        hsStruct add(g.aux._name,this->score);
+        g.AddScore(add); 
         g.SetScene(new Menu(*this->win));
     }
     
