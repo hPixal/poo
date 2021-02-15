@@ -49,7 +49,6 @@ Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
     aux2.setScale(0.70,0.70);
     spr_buttons[1] = aux2;
 
-
 }
 
 Vector2f Menu::center(Sprite &spr,int y){
@@ -63,24 +62,34 @@ void Menu::Update(Game &game){
     spr_title.setPosition(center(spr_title,230));
     spr_buttons[0].setPosition(center(spr_buttons[0],400));
     spr_buttons[1].setPosition(center(spr_buttons[1],600));
-    if (sf::Mouse::isButtonPressed(Mouse::Left)&& MouseisInsideBox(spr_buttons[0]))
+    this->win->pollEvent(game.m_ev);
+    if (game.m_ev.type == sf::Event::KeyPressed && game.m_ev.key.code==sf::Keyboard::Return) {
+				std::string str = in.getValue();
+				char caux[20];
+                strcpy(caux,str.c_str());
+                for (int i = 0; i < 20; i++)
+                {
+                    game.aux._name[i] = caux[i];
+                }
+                std::cerr << "Funca" << std::endl;
+				in.reset(); // reiniciar la entrada para tomar otra palabra
+			} else in.processEvent(game.m_ev);
+
+    if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[0]))
     {
         game.SetScene(new playScene(game.m_window));
     }
-    if (sf::Mouse::isButtonPressed(Mouse::Left)&& MouseisInsideBox(spr_buttons[1]))
+    if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[1]))
     {
         game.SetScene(new highscores_menu(game.m_window));
     }
 
-
-    if (game.m_ev.type==sf::Event::KeyPressed && game.m_ev.key.code==sf::Keyboard::Return) { 
-			std::string _strin = this->in.getValue();
-            char caux[20];
-            strcpy(caux,_strin.c_str());
-			*game.aux._name = *caux;
-		} else in.processEvent(game.m_ev); 
+    in.update();
 
 
+}
+
+void Menu::inUpdate(){
     this->in.update();
 }
 
@@ -94,6 +103,7 @@ void Menu::Draw() const{
     {
         win->draw(this->spr_buttons[i]);
     }
+    win->draw(in);
 
     win->display();
 

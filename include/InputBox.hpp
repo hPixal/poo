@@ -51,7 +51,7 @@ class InputText:public sf::Text {
 	bool editable;
 	bool single_word;
 public:
-	InputText(const sf::Font &font, int size=30, sf::Color color=sf::Color::Black) {
+	InputText(const sf::Font &font, int size=30, sf::Color color=sf::Color(0,0,0)) {
 		for(int i=0;i<sf::Keyboard::KeyCount;i++) is_down[i]=true;
 		max_chars=0;
 		single_word=false;
@@ -86,5 +86,3 @@ public:
 	std::string getValue() { return value; }
 	void reset() { value.clear(); }
 };
-
-
