@@ -5,6 +5,8 @@
 #include "Game.hpp"
 #include "death_scene.hpp"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 playScene::playScene(RenderWindow &win) {
 	this->pl_view = new View(win.getDefaultView().getCenter(),
 							 static_cast<Vector2f>(win.getSize()));
@@ -17,17 +19,19 @@ playScene::playScene(RenderWindow &win) {
 	m_font.loadFromFile("fonts/asap.ttf");
 	p_disp.setFont(m_font);
 	p_disp.setPosition(win.mapPixelToCoords(Vector2i(0,-100),*pl_view));
-	p_disp.setColor(Color(255,255,255));
+	p_disp.setFillColor(sf::Color(255,255,255));
 	p_disp.setScale(1,1);
 }
 
-/******************INIT*******************/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::initVariables(){
 	this->points = 1;
 	this->plat = new PlatformEngine(10,points);
 	this->player = new Player();
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::initBackgrounds(){
 	backgrounds.resize(10);
@@ -40,46 +44,48 @@ void playScene::initBackgrounds(){
 	change_background.setTexture(backgrounds[level]);
 	//Vector2u aux = backgrounds[0].getSize();
 	//level_background.setScale(1.50,1.50);
-	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
+	level_background.setOrigin(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	//change_background.setScale(1,1);
 }
 
-/****************LEVEL CHECKER*************/
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::check_level(){
 	if (points/300.0>1 && level<2) //Cave
 	{
 		level = 2;
 		level_change = true;
-		//change_background.setScale(1.50,1.50);
+		//change_background.setScale(1,1);
 	}
 	if (points/900.0>1 && level<3) //Sky
 	{ 
 		level = 3; 
 		level_change = true;
-		//change_background.setScale(1.50,1.50);
+		//change_background.setScale(1,1);
 	}
 	if (points/1600.0>1 && level<4) //Sky
 	{
 		level = 4;
 		level_change = true;
-		//change_background.setScale(1.50,1.50);
+		//change_background.setScale(1,1);
 	}
 	if (points/2200.0>1 && level<5) //Space
 	{
+		this->clk.restart();
 		level = 5;
 		level_change = true;
-		//change_background.setScale(1.50,1.50);
+		//change_background.setScale(1,1);
 	}
+	if (gtme.asSeconds() > 25 && level > 4)
+	{
+		level++;
+	}
+	
 	
 }
 
-/***************DRAW AND UPDATE***********/
 
-void playScene::draw_background(sf::RenderTarget &tar) const {
-	tar.draw(this->change_background);
-	tar.draw(this->level_background);
-}
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::updateCollision(Game &game)
 {
@@ -112,6 +118,8 @@ void playScene::updateCollision(Game &game)
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void playScene::updateView(){
 	if (player->_spr.getPosition().y < 
 	   win->mapPixelToCoords(Vector2i(0,1024/2),*pl_view).y)
@@ -120,6 +128,8 @@ void playScene::updateView(){
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void playScene::Update(Game &game)
 {
 	this->plat->Update(game,*pl_view,this->level);
@@ -127,11 +137,16 @@ void playScene::Update(Game &game)
 	this->updateCollision(game);
 	this->updateView();
 	this->updateBackgound();
+
+	gtme = clk.getElapsedTime();
+
 	game.m_window.setView(*pl_view);
+
 	p_disp.setPosition(game.m_window.mapPixelToCoords(Vector2i(0,0),*pl_view));
 	p_disp.setString("Points: "+std::to_string(points-1));
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::updatePlayer(){
 	this->player->Update();
@@ -139,8 +154,8 @@ void playScene::updatePlayer(){
 }
 
 void playScene::updateBackgound(){
-	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
-	this->change_background.setPosition(win->mapPixelToCoords(Vector2i(0,-100),*pl_view));
+	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
+	this->change_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));
 	if(level_change){
 		if (this->transp<5)
 		{
@@ -156,6 +171,14 @@ void playScene::updateBackgound(){
 	}
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+void playScene::draw_background(sf::RenderTarget &tar) const {
+	tar.draw(this->change_background);
+	tar.draw(this->level_background);
+}
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::Draw() const {
 
@@ -175,11 +198,13 @@ void playScene::Draw() const {
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 playScene::~playScene(){
 
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*
 This file is part of Skyjump.

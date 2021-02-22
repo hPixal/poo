@@ -11,6 +11,7 @@ class moving_cloud_platform : public Platform{
     int transp=255; 
 public:
     moving_cloud_platform(std::string filename); // Recibes the texture's file name passes it to Platform(filename)
+    moving_cloud_platform(std::string filename, int plusSpeed); // Recibes the texture's file name passes it to Platform(filename)
     void Update(Game &game) override; //Updates the platform position and makes it bounce between the two edges of game.m_window
     bool collideWith(const Entity & ent2) override; //Checks if the player is colliding with this->_spr (if it already had once, this function is going to return false)
     ~moving_cloud_platform() override;

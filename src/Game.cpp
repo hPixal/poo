@@ -9,8 +9,14 @@ using namespace std;
 using namespace sf;
 
 Game::Game() 
-	: m_window(VideoMode(640,1024),"Skyjump") , aux("anonimo",0)
+	: m_window(VideoMode(640,1024),"Skyjump")
 {
+	char fname[20] = "anonimo";
+	for (int i = 0; i < 20; i++)
+	{
+		aux._name[i]=fname[i];
+	}
+	aux._points = 0;
 	m_window.setFramerateLimit(60);
     //FILL WITH FIRST SCENE AS menuScene 
 	this->m_scene = new Menu(m_window);

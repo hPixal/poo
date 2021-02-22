@@ -22,10 +22,12 @@ private:
 	std::vector<Texture> backgrounds;
 	Sprite level_background;
 	Sprite change_background;
+	Clock clk;
+	Time gtme;
 	int max_platforms = 10;
 	int points=1;
 	int transp=255;
-	bool level_change;
+	bool level_change = false;
 	//Initializers
 	void initVariables();
 	void initBackgrounds();

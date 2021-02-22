@@ -1,15 +1,7 @@
 #pragma once
 
 struct hsStruct{
-	char _name[20];
-	int _points;
-	/*bool operator>(player aux){
-		if (player.score>this->score)
-		{
-			return true;
-		}
-		return false;
-	}*///La comente porque me parece que sort usa solo <, no >
+	public:
 	hsStruct(){
 		
 	}
@@ -36,5 +28,7 @@ struct hsStruct{
 		}
 		return false;
 	}
+	char _name[20];
+	int _points;
 };
 

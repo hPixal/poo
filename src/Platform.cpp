@@ -2,7 +2,7 @@
 #include "static_dirt_platform.hpp"
 #include "moving_dirt_platform.hpp"
 Platform::Platform(std::string file_loc) : Entity(file_loc) {
-	_spr.setScale(0.20,0.20);
+	_spr.setScale(0.10,0.10);
 	_spr.setPosition(280,500);
 }
 

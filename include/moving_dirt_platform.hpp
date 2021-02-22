@@ -11,6 +11,7 @@ class moving_dirt_platform : public Platform {
     int m_speed; //speed of the platform
 public:
     moving_dirt_platform(std::string filename);
+    moving_dirt_platform(std::string filename,int plusSpeed);
     void Update(Game &game) override; // This mostly updates the postion of the platform
     ~moving_dirt_platform() override { }
 };

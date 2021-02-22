@@ -5,8 +5,10 @@
 #include "moving_dirt_platform.hpp"
 #include "static_cloud_platform.hpp"
 #include "moving_cloud_platform.hpp"
+#include "moving_satellite_platform.hpp"
 #include "time.h"
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 PlatformEngine::PlatformEngine(int platmax, int &points) {
     srand(time(NULL));
@@ -16,6 +18,7 @@ PlatformEngine::PlatformEngine(int platmax, int &points) {
     initVector();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PlatformEngine::initVector(){
     Vector2f initial_platform;
@@ -36,6 +39,8 @@ bool PlatformEngine::getCollision(const Entity &player){
     }
     return false;
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void PlatformEngine::Update(Game &g,View &pl_view,int level){
     for (size_t i = 0; i < current_platforms.size(); i++)
@@ -62,6 +67,8 @@ void PlatformEngine::Update(Game &g,View &pl_view,int level){
     
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
     int aux = rand() % 6 ;
     float spawnPos = (bounds.x - current_platforms[0]->_spr.getGlobalBounds().width)/6; 
@@ -72,6 +79,8 @@ void PlatformEngine::givePos(Vector2f bounds,int prevPlat){
     current_platforms[prevPlat+1]->spawnPlatform(pos);
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 void PlatformEngine::Draw(RenderWindow &win){
     for (size_t i = 0; i < current_platforms.size(); i++)
     {
@@ -79,13 +88,18 @@ void PlatformEngine::Draw(RenderWindow &win){
     }
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 Platform* PlatformEngine::getNewPlatform(int level){
     int aux;
     
     switch (level)
     {
     case 1:
+        /* LEVEL 1 CAN BE USED AS TEST AREA SINCE SPAWN PLAT IS GOING TO BE A STATIC DIRT PLATFORM */
         return new static_dirt_platform("models/platform_dirt.png");
+        //return new static_cloud_platform("models/platform_cloud.png");
+        //return new moving_satellite_platform("models/platform_satellite.png");
         break;
     case 2:
         aux = rand()%6;
@@ -96,11 +110,12 @@ Platform* PlatformEngine::getNewPlatform(int level){
         {
             return new static_dirt_platform("models/platform_dirt.png");
         }
+        break;
     case 3:
         aux = rand()%6;
         if(aux == 1)
         {
-            return new moving_dirt_platform("models/platform_dirt.png");
+            return new moving_dirt_platform("models/platform_dirt.png",level);
         }else if (aux==2 || aux == 3)
         {
             return new static_cloud_platform("models/platform_cloud.png");
@@ -108,40 +123,61 @@ Platform* PlatformEngine::getNewPlatform(int level){
         {
             return new static_dirt_platform("models/platform_dirt.png");
         }
+        break;
     case 4:
         aux = rand()%6;
         if(aux == 1)
         {
-            return new moving_cloud_platform("models/platform_cloud.png");
+            return new moving_cloud_platform("models/platform_cloud.png",level);
         }else if (aux==2 || aux == 3)
         {
             return new static_cloud_platform("models/platform_cloud.png");
         }else if (aux==4)
         {
-            return new moving_dirt_platform("models/platform_dirt.png");
+            return new moving_dirt_platform("models/platform_dirt.png",level);
         }else
         {
             return new static_dirt_platform("models/platform_dirt.png");
         }
+        break;
     case 5:
-        aux = rand()%6;
+        aux = rand()%7;
         if (aux == 1 || aux == 2)
         {
-            return new moving_cloud_platform("models/platform_cloud.png");
-        }else if (aux == 3 || aux == 4 || aux == 5 || aux == 0)
+            return new moving_cloud_platform("models/platform_cloud.png",level);
+        }else if (aux == 3 || aux == 4 || aux == 5)
         {
             return new static_cloud_platform("models/platform_cloud.png");
-        } else if (aux == 6)
+        }else if (aux == 6 || aux == 0 || aux == 7)
         {
-            return new moving_dirt_platform("models/platform_dirt.png");
+            return new moving_satellite_platform("models/platform_satellite.png");
         }
+        break;
     default:
-        std::cerr << "ERROR WITH AUX IN GETNEWPLATFOM()" << std::endl;
+        aux = rand()%2;
+        if (aux == 0)
+        {
+            return new moving_satellite_platform("models/platform_satellite.png");
+        }
+        if (aux == 1)
+        {
+            return new moving_cloud_platform("models/platform_cloud.png",level);
+        }
+        if (aux == 2)
+        {
+            return new static_cloud_platform("models/platform_cloud.png");
+        }
+        
         break;
     }
     return NULL;
 }
 
-PlatformEngine::~PlatformEngine() {
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+PlatformEngine::~PlatformEngine() {
+    for(auto x : this->current_platforms)
+        delete x;
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////

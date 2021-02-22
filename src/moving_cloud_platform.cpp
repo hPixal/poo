@@ -1,9 +1,17 @@
 #include "moving_cloud_platform.hpp"
 
 moving_cloud_platform::moving_cloud_platform(std::string filename) : Platform(filename) {
-    this->_spr.setScale(0.70,0.70);
+    this->_spr.setScale(0.60,0.60);
     points = 15;
     m_speed = 5;
+}
+
+
+moving_cloud_platform::moving_cloud_platform(std::string filename,int plusSpeed) : Platform(filename) {
+    this->_spr.setScale(0.60,0.60);
+    points = 15;
+    m_speed = 5;
+    this->m_speed+=plusSpeed;
 }
 
 void moving_cloud_platform::Update(Game &game){

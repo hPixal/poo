@@ -13,6 +13,13 @@ moving_dirt_platform::moving_dirt_platform(std::string filename) : Platform(file
     m_speed = 5;
 }
 
+moving_dirt_platform::moving_dirt_platform(std::string filename,int plusSpeed) : Platform(filename) {
+    this->_spr.setScale(1,1);
+    points = 15;
+    m_speed = 5;
+    this->m_speed+=plusSpeed; 
+}
+
 void moving_dirt_platform::Update(Game &game){
     this->_spr.move(m_speed,0);
     if (this->_spr.getPosition().x < 0 or
