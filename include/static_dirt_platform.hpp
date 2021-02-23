@@ -11,7 +11,7 @@ class static_dirt_platform : public Platform {
 
 public:
     static_dirt_platform(std::string filename); // Recibes the texture's file name passes it to Platform(filename)
-    void Update(Game &game) override; // Does nothing.
+    void Update(Game &) override; // Does nothing.
     ~static_dirt_platform() override { }
 };
 

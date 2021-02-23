@@ -9,7 +9,7 @@ static_cloud_platform::static_cloud_platform(std::string filename) : Platform(fi
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-void static_cloud_platform::Update(Game &game){
+void static_cloud_platform::Update(Game &){
     if (!canBounce && transp>5)
     {
         transp-=10;
@@ -19,7 +19,6 @@ void static_cloud_platform::Update(Game &game){
     {
         _spr.setColor(Color(255,255,255,0));
     }
-    game;
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////

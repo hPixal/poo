@@ -12,7 +12,7 @@ class static_cloud_platform : public Platform{
     int transp=255;
 public:
     static_cloud_platform(std::string filename);
-    void Update(Game &game) override; //Updates cloud's transparency
+    void Update(Game &) override; //Updates cloud's transparency
     bool collideWith(const Entity & ent2) override;  //Checks if the player is colliding with this->_spr (if it already had once, this function is going to return false)
     ~static_cloud_platform() override;
 };
