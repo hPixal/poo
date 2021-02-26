@@ -73,10 +73,10 @@ void Game::SetScene (Scene * next_scene) {
 }
 
 void Game::InitHighScore ( ) {
-	ifstream file("HighScores.bin",ios::binary|ios::in|ios::ate);
+	ifstream file("bin/HighScores.bin",ios::binary|ios::in|ios::ate);
 	if(!file){
 		cerr << "/n The file could not be opened n/" ;
-		ofstream newFile("HighScores.bin", ios::trunc | ios::binary);
+		ofstream newFile("bin/HighScores.bin", ios::trunc | ios::binary);
 		newFile.close();
 		for (int i = 0; i < 10; i++)
 		{
@@ -116,7 +116,7 @@ vector<hsStruct> Game::getHighscore(){
 }
 
 void Game::saveScores(){
-	ofstream file("HighScores.bin",ios::ate|ios::binary|ios::out|ios::trunc);
+	ofstream file("bin/HighScores.bin",ios::ate|ios::binary|ios::out|ios::trunc);
 	
 	for(size_t i=0; i<Scores.size();++i){
 		hsStruct aux = Scores[i];
