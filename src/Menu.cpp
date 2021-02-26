@@ -79,7 +79,8 @@ void Menu::Update(Game &game){
 		spr_buttons[i].setPosition(center(spr_buttons[i],(200+(100*i))));
 	}
     this->win->pollEvent(game.m_ev);
-    if (game.m_ev.type == sf::Event::KeyPressed && game.m_ev.key.code==sf::Keyboard::Return) {
+    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) &&
+        clk.getElapsedTime().asSeconds()>0.09){
 				std::string str = in.getValue();
 				char caux[20];
                 strcpy(caux,str.c_str());
@@ -88,8 +89,12 @@ void Menu::Update(Game &game){
                     game.aux._name[i] = caux[i];
                 }
                 std::cerr << "Funca" << std::endl;
+                for(auto x:caux)
+                    std::cerr << x;
+                std::cerr<< std::endl;
 				in.reset(); // reiniciar la entrada para tomar otra palabra
-			} else in.processEvent(game.m_ev);
+                clk.restart();
+			} else if(clk.getElapsedTime().asSeconds()>0.09){in.processEvent(game.m_ev);clk.restart();}
 
     if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[0]))
     {

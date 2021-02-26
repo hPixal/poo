@@ -25,7 +25,7 @@ highscores_menu::highscores_menu(RenderWindow &win) {
 
     scores.setString("Una prueba nomas");
 
-    background.setScale(0.35,0.35);
+    background.setScale(1,1);
     backToMenu.setScale(0.25,0.25);
     scores.setScale(1,1);
 
