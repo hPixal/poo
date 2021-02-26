@@ -14,7 +14,7 @@ highscores_menu::highscores_menu(RenderWindow &win) {
     this->win = &win; 
 
     f.loadFromFile("fonts/asap.ttf");
-    scene_background.loadFromFile("models/menu_bg.jpg");
+    scene_background.loadFromFile("models/menu_bg.png");
     button.loadFromFile("models/back_to_menu.png");
     t_title.loadFromFile("models/highscore_title.png");
     scores.setFont(f);

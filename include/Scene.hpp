@@ -11,6 +11,11 @@ composed just so Game class can accept and display them.
 
 class Scene {
 protected:
+    //Clock
+	static Clock clk;
+	Time tme;
+    bool fclick=true;
+
     RenderWindow* win;
 public:
     Scene();

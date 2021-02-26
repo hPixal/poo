@@ -5,7 +5,7 @@
 #include "highscores_menu.hpp"
 #include "InputBox.hpp"
 #include <string.h>
-#include "instructuins_scene.hpp"
+#include "instructions_scene.hpp"
 #include "playScene.hpp"
 using namespace sf;
 
