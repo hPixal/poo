@@ -11,11 +11,7 @@ composed just so Game class can accept and display them.
 
 class Scene {
 protected:
-    //Clock
-	static Clock clk;
-	Time tme;
-    bool fclick=true;
-
+    Event m_ev;
     RenderWindow* win;
 public:
     Scene();
@@ -24,6 +20,7 @@ public:
     virtual void Draw() const = 0; //All scenes must have an overrided draw
                                                         //function and get window to display itself
     bool MouseisInsideBox(Sprite spr); //checks if mouse is inside spr 
+    virtual void processEvent(sf::Event &ev){ m_ev = ev; }
     virtual ~Scene(){};
 };
 

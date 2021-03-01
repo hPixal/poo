@@ -36,7 +36,7 @@ instructuins_scene::instructuins_scene(RenderWindow &win) : moving("models/platf
 
 	// For buttons
 
-	button.loadFromFile("models/back_to_menu.png");     //
+	button.loadFromFile("models/home.png");     //
 	backToMenu.setTexture(button);						// Back button
 	backToMenu.setScale(0.10,0.10);						//
 
@@ -91,11 +91,13 @@ instructuins_scene::instructuins_scene(RenderWindow &win) : moving("models/platf
 
 void instructuins_scene::Update (Game & game) {
 
-	if (Mouse::isButtonPressed(Mouse::Left) && this->MouseisInsideBox(backToMenu))
-	{
+	if (m_ev.type == Event::EventType::MouseButtonPressed && this->MouseisInsideBox(backToMenu) &&
+		clk.getElapsedTime().asSeconds() > 0.2){
 		game.SetScene(new Menu(*win));
-	}else if(Mouse::isButtonPressed(Mouse::Left) && this->MouseisInsideBox(next)){
+	}else if(m_ev.type == Event::EventType::MouseButtonPressed && this->MouseisInsideBox(next) && 
+		clk.getElapsedTime().asSeconds() > 0.2){
 		this->nextpage = !nextpage;
+		clk.restart();
 	}
 
 	moving.Update(game);

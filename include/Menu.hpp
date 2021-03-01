@@ -9,6 +9,7 @@ using namespace sf;
 class Menu : public Scene{
     InputText in;;
     //Buttons
+
     char user[20];
     Font font;
     Texture background;
@@ -17,12 +18,15 @@ class Menu : public Scene{
     Sprite spr_title;
     std::vector<Texture>buttons;
     std::vector<Sprite>spr_buttons;
+    Game* m_g;
+
 public:
+
     Menu(RenderWindow &win);//Set &win to this->win
     Vector2f center(Sprite &spr,int y);//Returns the coordinates of where does spr needs to be in order to be in the exact center
     void Update(Game &game) override;//It mostly checks wether or not the mouse is clicking the buttons
-    void inUpdate();
     void Draw() const override;//Clears the screen and calls for win.draw(_spr) for each _spr in the screen
+    void processEvent(Event &ev) override;
     ~Menu();
 };
 

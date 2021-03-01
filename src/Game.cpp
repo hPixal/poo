@@ -56,14 +56,8 @@ void Game::ProcessEvents ( ) {
 			this->saveScores();
 			this->m_window.close();
 		}
-		if (
-			this->m_ev.type == sf::Event::KeyReleased &&
-			(
-				this->m_ev.key.code == sf::Keyboard::A ||
-				this->m_ev.key.code == sf::Keyboard::D 
-				)
-			)
-		{
+		else{
+			this->m_scene->processEvent(this->m_ev);
 		}
 	} 
 }

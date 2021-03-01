@@ -10,7 +10,7 @@
 using namespace sf;
 
 
-Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
+Menu::Menu(RenderWindow &win) : in(font,30,Color(255,255,255)) {
     this->win = &win; 
     font.loadFromFile("fonts/asap.ttf");
     
@@ -18,7 +18,7 @@ Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
 	in.setSingleWord(true);
 
 
-    in.setPosition(200,800);
+    in.setPosition(200,570);
     buttons.resize(4);
     spr_buttons.resize(4);
 
@@ -42,8 +42,9 @@ Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
 	aux.loadFromFile("models/Instructions.png");
 	buttons[2] = aux;
 	
-	aux.loadFromFile("models/Username.png");
-	buttons[3] = aux;
+    Texture tusername;
+	tusername.loadFromFile("models/Username.png");
+	buttons[3] = tusername;
 	
     //Buttons Sprites
     Sprite aux2;
@@ -60,9 +61,10 @@ Menu::Menu(RenderWindow &win) : in(font,20,Color(255,255,255)) {
 	aux2.setScale(0.70,0.70);
 	spr_buttons[2] = aux2;
 	
-	aux2.setTexture(buttons[3]);
-	aux2.setScale(0.70,0.70);
-	spr_buttons[3] = aux2;
+    Sprite s_username;
+	s_username.setTexture(buttons[3]);
+	s_username.setScale(0.70,0.70);
+	spr_buttons[3] = s_username;
 
 }
 
@@ -73,68 +75,57 @@ Vector2f Menu::center(Sprite &spr,int y){
 
 
 void Menu::Update(Game &game){
+    m_g = &game;
+
     spr_bg.setPosition(0.f,0.f);
     spr_title.setPosition(center(spr_title,100));
 	for(int i=0;i<4;i++){
 		spr_buttons[i].setPosition(center(spr_buttons[i],(200+(100*i))));
 	}
-    this->win->pollEvent(game.m_ev);
-    if (sf::Keyboard::isKeyPressed(sf::Keyboard::Return) &&
-        clk.getElapsedTime().asSeconds()>0.09){
-				std::string str = in.getValue();
-				char caux[20];
-                strcpy(caux,str.c_str());
-                for (int i = 0; i < 20; i++)
-                {
-                    game.aux._name[i] = caux[i];
-                }
-                std::cerr << "Funca" << std::endl;
-                for(auto x:caux)
-                    std::cerr << x;
-                std::cerr<< std::endl;
-				in.reset(); // reiniciar la entrada para tomar otra palabra
-                clk.restart();
-			} else if(clk.getElapsedTime().asSeconds()>0.09){in.processEvent(game.m_ev);clk.restart();}
 
-    if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[0]))
+    if (m_ev.type == Event::EventType::MouseButtonPressed && MouseisInsideBox(spr_buttons[0]))
     {
         game.SetScene(new playScene(game.m_window));
     }
-    if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[1]))
+    if (m_ev.type == Event::EventType::MouseButtonPressed && MouseisInsideBox(spr_buttons[1]))
     {
         game.SetScene(new highscores_menu(game.m_window));
     }
-	if (sf::Mouse::isButtonPressed(Mouse::Left) && MouseisInsideBox(spr_buttons[2]))
+	if (m_ev.type == Event::EventType::MouseButtonPressed && MouseisInsideBox(spr_buttons[2]))
 	{
 		game.SetScene(new instructuins_scene(game.m_window));
-	}
-	
-
+    }
     in.update();
-
-
-}
-
-void Menu::inUpdate(){
-    this->in.update();
 }
 
 void Menu::Draw() const{
     win->clear();
     win->draw(this->spr_bg);
     win->draw(this->spr_title);
-    //for(auto x: spr_buttons)
-    //    win->draw(x);
-    for (size_t i = 0; i < 4/*this->spr_buttons.size()*/; i++)
+    win->draw(in);
+    for (size_t i = 0; i < this->spr_buttons.size(); i++)
     {
         win->draw(this->spr_buttons[i]);
     }
-    win->draw(in);
-
     win->display();
 
 }
 
-Menu::~Menu() {
-
+void Menu::processEvent(Event &ev){
+    this->in.processEvent(ev);
+    this->m_ev = ev;
 }
+
+
+Menu::~Menu() {
+    std::string str = in.getValue();
+    if (str != "")
+    {
+        strcpy(m_g->aux._name,str.c_str());
+    }
+    /*
+    std::cerr<< std::endl;
+    std::cout << str << std::endl;
+    std::cout << "ponele que funciona" << std::endl;
+    */
+    }

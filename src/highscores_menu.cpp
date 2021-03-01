@@ -23,7 +23,7 @@ highscores_menu::highscores_menu(RenderWindow &win) {
     backToMenu.setTexture(button);
     s_title.setTexture(t_title);
 
-    scores.setString("Una prueba nomas");
+    scores.setString("Top 10 Highscores:");
 
     background.setScale(1,1);
     backToMenu.setScale(0.25,0.25);
@@ -51,7 +51,7 @@ Vector2f highscores_menu::center(FloatRect bounds,int y){
 }
 void highscores_menu::Update(Game &g){
     int pos = 400;
-    if (Mouse::isButtonPressed(Mouse::Left) && this->MouseisInsideBox(backToMenu))
+    if (m_ev.type == Event::EventType::MouseButtonPressed && this->MouseisInsideBox(backToMenu))
     {
         g.SetScene(new Menu(*win));
     }

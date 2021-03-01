@@ -124,7 +124,7 @@ void playScene::updateView(){
 	if (player->_spr.getPosition().y < 
 	   win->mapPixelToCoords(Vector2i(0,1024/2),*pl_view).y)
 	{
-		pl_view->setCenter(Vector2f(pl_view->getCenter().x,pl_view->getCenter().y-10.f));
+		pl_view->setCenter(Vector2f(pl_view->getCenter().x,pl_view->getCenter().y-(1.0*abs(this->player->getVelY()))));
 	}
 }
 
@@ -152,6 +152,8 @@ void playScene::updatePlayer(){
 	this->player->Update();
 	check_level();
 }
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 void playScene::updateBackgound(){
 	this->level_background.setPosition(win->mapPixelToCoords(Vector2i(0,0),*pl_view));

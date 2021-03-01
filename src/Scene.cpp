@@ -10,10 +10,9 @@ Scene::Scene(){
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 bool Scene::MouseisInsideBox(Sprite spr){
-    tme = clk.getElapsedTime();
     Vector2f mouse_pos = static_cast<Vector2f>(Mouse::getPosition(*win));
-    bool x;
-    bool y;
+    bool x=false;
+    bool y=false;
     if (mouse_pos.y > spr.getPosition().y &&
         mouse_pos.y < (spr.getPosition().y+spr.getGlobalBounds().height))
     {
@@ -25,19 +24,15 @@ bool Scene::MouseisInsideBox(Sprite spr){
         x = true;
     }
     
-    if (x&&y&&(tme.asSeconds() > 0.2 || fclick))
+    if (x&&y)
     {
-        clk.restart();
-        fclick = false;
         return true;
     }
     return false;
-    
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Clock Scene::clk;
 
 /*
 This file is part of Skyjump.

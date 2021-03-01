@@ -19,6 +19,7 @@ public:
 	void teleport(int x); // Teleports the play to given x value
 	bool getMovement(); // Returns true if moving right, false if moving left
 	void bounce(); //Makes the player bounce
+	float getVelY();
 	//Get Positions
 	Vector2f getPosition(); //Returns the current player position
 	FloatRect getGlobalBounds(); //Rerturns this->_spr.getGlobalBounds()

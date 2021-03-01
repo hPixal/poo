@@ -44,6 +44,9 @@ class instructuins_scene : public Scene {
 	Text tsatellite;
 	Text tmoving;
 
+	//Clock
+	Clock clk;
+
 public:
 	instructuins_scene(RenderWindow &win);
 	void Update (Game & game);
