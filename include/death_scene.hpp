@@ -17,10 +17,12 @@ class death_scene :public Scene{
     Font f;
     Text p_display;
     Texture button;
+	Texture button2;
     Texture scene_background;
     Texture gameover;
     Sprite gameOver;
     Sprite backToMenu;
+	Sprite playAgain;
     Sprite background;
 public:
     death_scene(RenderWindow &win,int points/*,string name*/);//intializes all texts and sprites

@@ -16,10 +16,12 @@ death_scene::death_scene(RenderWindow &win,int points/*,string name*/){ //deberi
 	/*this->_name = ACA HAY QUE PASAR DE STRING A CADENA DE CHAR name;*/
 
     f.loadFromFile("fonts/asap.ttf");
-    gameover.loadFromFile("models/game_over.png"    );
+    gameover.loadFromFile("models/game_over.png");
     scene_background.loadFromFile("models/death_scene.png");
-    button.loadFromFile("models/back_to_menu.png");
+    button.loadFromFile("models/home.png");
+	button2.loadFromFile("models/back_to_menu.png");
     backToMenu.setTexture(button);
+	playAgain.setTexture(button2);
     background.setTexture(scene_background);
     gameOver.setTexture(gameover);
 
@@ -28,11 +30,13 @@ death_scene::death_scene(RenderWindow &win,int points/*,string name*/){ //deberi
 
     p_display.setScale(1.25,1.25);
     backToMenu.setScale(0.25,0.25);
+	playAgain.setScale(0.25,0.25);
 
 
     background.setPosition(0,0);
     gameOver.setPosition(center(gameOver.getGlobalBounds(),220));
-    backToMenu.setPosition(center(backToMenu.getGlobalBounds(),520));
+	playAgain.setPosition(win.getDefaultView().getCenter().x-(playAgain.getGlobalBounds().width+2),520);
+    backToMenu.setPosition(win.getDefaultView().getCenter().x+2,520);
     p_display.setPosition(center(p_display.getGlobalBounds(),420));
 }
 
@@ -48,6 +52,12 @@ void death_scene::Update(Game &g){
         g.AddScore(add); 
         g.SetScene(new Menu(*this->win));
     }
+	if (this->MouseisInsideBox(playAgain) && m_ev.type == Event::EventType::MouseButtonPressed)
+	{   
+		hsStruct add(g.aux._name,this->score);
+		g.AddScore(add); 
+		g.SetScene(new playScene(*this->win));
+	}
     
 }
 
@@ -56,6 +66,7 @@ void death_scene::Draw() const {
     this->win->draw(this->background);
     this->win->draw(this->gameOver);
     this->win->draw(this->backToMenu);
+	this->win->draw(this->playAgain);
     this->win->draw(this->p_display);
     this->win->display();
 }

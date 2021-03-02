@@ -78,7 +78,7 @@ void Menu::Update(Game &game){
     m_g = &game;
 
     spr_bg.setPosition(0.f,0.f);
-    spr_title.setPosition(center(spr_title,100));
+    spr_title.setPosition(center(spr_title,50));
 	for(int i=0;i<4;i++){
 		spr_buttons[i].setPosition(center(spr_buttons[i],(200+(100*i))));
 	}
