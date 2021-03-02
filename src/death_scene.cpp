@@ -10,10 +10,9 @@
 using namespace std;
 using namespace sf;
 
-death_scene::death_scene(RenderWindow &win,int points/*,string name*/){ //deberiamos tener el nombre del jugador tambien
+death_scene::death_scene(RenderWindow &win,int points){
     this->win = &win;
-    this->score = points; 
-	/*this->_name = ACA HAY QUE PASAR DE STRING A CADENA DE CHAR name;*/
+    this->score = points-1; 
 
     f.loadFromFile("fonts/asap.ttf");
     gameover.loadFromFile("models/game_over.png");

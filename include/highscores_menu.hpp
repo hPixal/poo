@@ -17,11 +17,16 @@ class highscores_menu : public Scene{
     Texture button;
     Texture scene_background;
     Texture t_title;
+	Texture t;
+	Texture t2;
+	Texture t3;
     Sprite s_title;
     Sprite backToMenu;
     Sprite background;
+	Sprite s;
     std::vector<Text> _names;
     std::vector<Text> _scores;
+	std::vector<Sprite> medals;
 public:
     highscores_menu(RenderWindow &win);
     Vector2f center(FloatRect bounds,int y);
