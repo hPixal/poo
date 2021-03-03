@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <cmath>
 #include "playScene.hpp"
 #include "Scene.hpp"
 #include "PlatformEngine.hpp"
