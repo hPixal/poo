@@ -2,9 +2,7 @@
  /.vscode/
  .directory
  /.git/
- Makefile
 .directory
-Makefile
 .vscode/.easycpp
 .vscode/launch.json
 .vscode/tasks.json
