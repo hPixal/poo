@@ -1,10 +1,6 @@
- .gitignore
- /.vscode/
- .directory
- /.git/
+.gitignore
 .directory
-.vscode/.easycpp
-.vscode/launch.json
-.vscode/tasks.json
+/.git/
+.directory
 .gitignore
 bin/HighScores.bin
